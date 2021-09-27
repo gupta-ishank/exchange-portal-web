@@ -27,9 +27,13 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/swagger-editor-dist/swagger-editor.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/swagger-editor-dist/swagger-editor-bundle.js",
+              "node_modules/swagger-editor-dist/swagger-editor-standalone-preset.js"
+            ]
           },
           "configurations": {
             "production": {
