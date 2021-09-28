@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { MenuService } from './menu.service';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { SwaggerUiComponent } from './swagger-ui/swagger-ui.component';
 
-
+// declare const SwaggerUIBundle: any;
 interface MenuNode {
   name: string;
-  mId: string;
+  files?: string;
   childs?: MenuNode[];
 }
 
@@ -27,27 +28,36 @@ export class AppComponent {
     menuSelected: "",
     button : "Create"
   }
-  
-  menuData = {
-    mid: "",
-    name: "",
-    description: "",
-    route: "",
-    permission: "",
-    parent_id: "",
-    projId : "P_001"
-  }
+//   ngOnInit(): void {
+//     const ui = SwaggerUIBundle({
+//         dom_id: '#swagger-ui',
+//         layout: 'BaseLayout',
+//         presets: [
+//           SwaggerUIBundle.presets.apis,
+//           SwaggerUIBundle.SwaggerUIStandalonePreset
+//         ],
+//         url: 'https://petstore.swagger.io/v2/swagger.json',
+//       });
+//   }
+//   menuData = {
+//     name: "",
+//     route: "",
+//     permission: "",
+//     parent_id: "",
+//     projId : "P_001"
+//   }
+
   constructor() { 
       this.refreshMenu();
    }
 
    hasChild = (_: number, node: MenuNode) => !!node.childs && node.childs.length > 0; // !! = ?
-   onClick(menuId: any){
+   onClick(nameSearch: any){
      this.uiToogler.button = "Update"
     for (const menu of this.allMenuData) {
-      if(menu.mId === menuId){
-        this.menuData = menu
-        this.uiToogler.menuSelected = menuId
+      if(menu.name === nameSearch){
+        // this.menuData = menu
+        this.uiToogler.menuSelected = nameSearch;
       }
     }
     event?.stopPropagation()
@@ -61,49 +71,56 @@ export class AppComponent {
     // this.menuService.getAllMenuData(this.menuData.projId).subscribe(data =>{
         //   this.allMenuData = data
         // })
-        
-        this.mainMenuData = [
-            {
-          "mId":"M_001",
-          "pid":"P_001",
-          "name":"Home",
-          "desc":"home",
-          "route":"/home",
-          "permission":"HOME",
-          "childs":[]
-        },
+
+    this.mainMenuData = [
         {
-          "mId":"M_002",
-          "name":"Petstore",
-          "desc":"Petstore",
-          "route":"/petstore",
-          "permission":"SALE_TRANSACTION",
-          "childs":[
-              {
-                  "mId":"M_003",
-                  "name":"petstore.json",
-                  "desc":"petstore.json",
-                  "route":"/petstore.json",
-                  "permission":"PETSTORE_JSON",
+            "name": "Music",
+            // "route": "/{name}",
+            "files": [
+            "music.json"
+            ],
+            "childs": [
+            {
+                "name": "New folder",
+                "files": [],
+                "childs": [
+                {
+                    "name": "nested",
+                    "files": [],
+                    "childs": []
                 }
+                ]
+            },
+            {
+                "name": "Sub Music",
+                "files": [
+                "new folder.json"
+                ],
+                "childs": []
+            }
             ]
         },
         {
-            "mId":"M_002",
-            "name":"AppUi",
-            "desc":"appui",
-            "route":"/app-ui",
-            "permission":"APP_UI",
-            "childs":[
-                {
-                    "mId":"M_003",
-                    "name":"appui.json",
-                    "desc":"appui.json",
-                    "route":"/appui.json",
-                    "permission":"APP_UI_JSON",
-                  }
-              ]
-          }
+            "name": "New User",
+            "files": [
+            "new user.json"
+            ],
+            "childs": []
+        },
+        {
+            "name": "Order",
+            "files": [
+            "order.json"
+            ],
+            "childs": []
+        },
+        {
+            "name": "Service",
+            "files": [
+            "service.json"
+            ],
+            "childs": []
+        }
     ]
     this.dataSource.data = this.mainMenuData;
 
