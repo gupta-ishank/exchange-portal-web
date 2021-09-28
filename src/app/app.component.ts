@@ -18,7 +18,7 @@ interface MenuNode {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'EXHCHANGE-PORTAL-UI';
+  title = 'EXCHANGE-PORTAL-UI';
 
   treeControl = new NestedTreeControl<MenuNode>(node => node.childs); 
   dataSource = new MatTreeNestedDataSource<MenuNode>();
