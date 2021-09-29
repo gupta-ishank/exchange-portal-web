@@ -10,11 +10,13 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule } from '@angular/common/http';
 import { DemoMaterialModule } from './material-module';
 import { SwaggerUiComponent } from './swagger-ui/swagger-ui.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SwaggerUiComponent
+    SwaggerUiComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
