@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-// import { MenuService } from './menu.service';
+import { AppService } from '../app.service';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 declare const SwaggerUIBundle: any;
@@ -38,7 +38,7 @@ export class SwaggerUiComponent implements OnInit {
       });
   }
 
-  constructor() { 
+  constructor(private appService: AppService) { 
     this.refreshMenu();
  }
 
@@ -56,64 +56,64 @@ export class SwaggerUiComponent implements OnInit {
 
 
   refreshMenu(){
-    // this.menuService.getMainMenuData(this.menuData.projId).subscribe(data =>{
-    //   this.mainMenuData = data
-    // })
-    // this.menuService.getAllMenuData(this.menuData.projId).subscribe(data =>{
-        //   this.allMenuData = data
-        // })
+    
+    this.appService.getAllMenu().subscribe(data =>{
+        this.mainMenuData = data
+        this.dataSource.data = this.mainMenuData;
+    })
 
-    this.mainMenuData = [
-        {
-            "name": "Music",
-            // "route": "/{name}",
-            "files": [
-            "music.json"
-            ],
-            "childs": [
-            {
-                "name": "New folder",
-                "files": [],
-                "childs": [
-                {
-                    "name": "nested",
-                    "files": [],
-                    "childs": []
-                }
-                ]
-            },
-            {
-                "name": "Sub Music",
-                "files": [
-                "new folder.json"
-                ],
-                "childs": []
-            }
-            ]
-        },
-        {
-            "name": "New User",
-            "files": [
-            "new user.json"
-            ],
-            "childs": []
-        },
-        {
-            "name": "Order",
-            "files": [
-            "order.json"
-            ],
-            "childs": []
-        },
-        {
-            "name": "Service",
-            "files": [
-            "service.json"
-            ],
-            "childs": []
-        }
-    ]
-    this.dataSource.data = this.mainMenuData;
+
+    // this.mainMenuData = [
+    //     {
+    //         "name": "Music",
+    //         // "route": "/{name}",
+    //         "files": [
+    //         "music.json"
+    //         ],
+    //         "childs": [
+    //         {
+    //             "name": "New folder",
+    //             "files": [],
+    //             "childs": [
+    //             {
+    //                 "name": "nested",
+    //                 "files": [],
+    //                 "childs": []
+    //             }
+    //             ]
+    //         },
+    //         {
+    //             "name": "Sub Music",
+    //             "files": [
+    //             "new folder.json"
+    //             ],
+    //             "childs": []
+    //         }
+    //         ]
+    //     },
+    //     {
+    //         "name": "New User",
+    //         "files": [
+    //         "new user.json"
+    //         ],
+    //         "childs": []
+    //     },
+    //     {
+    //         "name": "Order",
+    //         "files": [
+    //         "order.json"
+    //         ],
+    //         "childs": []
+    //     },
+    //     {
+    //         "name": "Service",
+    //         "files": [
+    //         "service.json"
+    //         ],
+    //         "childs": []
+    //     }
+    // ]
+    
 
   }
 
