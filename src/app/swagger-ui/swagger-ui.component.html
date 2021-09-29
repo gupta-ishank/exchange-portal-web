@@ -10,12 +10,13 @@
             
           <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
             
-            <mat-tree-node *matTreeNodeDef="let node" (click)="onClick(node.name)" style="cursor: pointer;">
-              <span>{{node.name}}</span>
-            </mat-tree-node>  // Which array is travelling....
+            <mat-tree-node *matTreeNodeDef="let node" (click)= "doubleClick(node.type, node)" style="cursor: pointer;">
+              <span> {{node.name}} </span>
+            </mat-tree-node>  
   
             <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
                 <div class="mat-tree-node" style="cursor: pointer;">
+
                   <span matTreeNodeToggle (click)="onClick(node.name)">{{node.name}}
                     
                     <mat-icon class="material-icons-outlined">
@@ -24,10 +25,11 @@
   
                 </span>
                 </div>
-                <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
-                    role="group">
+
+                <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
                   <ng-container matTreeNodeOutlet></ng-container>
-              </div>
+                </div>
+
             </mat-nested-tree-node>
           </mat-tree>
         </div>

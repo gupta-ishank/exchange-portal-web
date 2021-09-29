@@ -2,12 +2,9 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppService } from '../app.service';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { MenuNode } from '../menuNode'
 declare const SwaggerUIBundle: any;
-interface MenuNode {
-  name: string;
-  files?: string;
-  childs?: MenuNode[];
-}
+
 @Component({
   selector: 'app-swagger-ui',
   templateUrl: './swagger-ui.component.html',
@@ -19,13 +16,15 @@ export class SwaggerUiComponent implements OnInit {
 
   treeControl = new NestedTreeControl<MenuNode>(node => node.childs); 
   dataSource = new MatTreeNestedDataSource<MenuNode>();
+//   fileDataSource = new MatTreeNestedDataSource<MenuNode>();
   mainMenuData:any = []  
+  fileData:any = [] 
   allMenuData:any = [] 
   uiToogler = {
     menuSelected: "",
     button : "Create"
   }
-
+  
   ngOnInit(): void {
     const ui = SwaggerUIBundle({
         dom_id: '#swagger-ui',
@@ -50,33 +49,44 @@ export class SwaggerUiComponent implements OnInit {
         // this.menuData = menu
         this.uiToogler.menuSelected = nameSearch;
       }
-    }
+    } 
     event?.stopPropagation()
   }
 
+  doubleClick(node: MenuNode){
+      if(node.type != 1){
+          this.appService.getFileData(node).subscribe(data => {
+                this.fileData = data;
+                // this.fileDataSource.data = this.fileData;
+          })
+      }
+      console.log(this.fileData);
+  }
 
   refreshMenu(){
     
+
     this.appService.getAllMenu().subscribe(data =>{
         this.mainMenuData = data
         this.dataSource.data = this.mainMenuData;
     })
-
-
     // this.mainMenuData = [
     //     {
     //         "name": "Music",
     //         // "route": "/{name}",
+    //         "type" : "1",
     //         "files": [
     //         "music.json"
     //         ],
     //         "childs": [
     //         {
     //             "name": "New folder",
+    //             "type" : "1",
     //             "files": [],
     //             "childs": [
     //             {
-    //                 "name": "nested",
+    //                 "name": "nested.json",
+    //                 "type" : "2",
     //                 "files": [],
     //                 "childs": []
     //             }
@@ -84,22 +94,39 @@ export class SwaggerUiComponent implements OnInit {
     //         },
     //         {
     //             "name": "Sub Music",
+    //             "type" : "1",
     //             "files": [
     //             "new folder.json"
     //             ],
-    //             "childs": []
+    //             "childs": [
+    //                 {
+    //                     "name": "nested",
+    //                     "type" : "1",
+    //                     "files": [],
+    //                     "childs": []
+    //                 }
+    //                 ]
     //         }
     //         ]
     //     },
     //     {
     //         "name": "New User",
+    //         "type" : "1",
     //         "files": [
     //         "new user.json"
     //         ],
-    //         "childs": []
+    //         "childs": [
+    //             {
+    //                 "name": "nested",
+    //                 "type" : "1",
+    //                 "files": [],
+    //                 "childs": []
+    //             }
+    //             ]
     //     },
     //     {
     //         "name": "Order",
+    //         "type" : "1",
     //         "files": [
     //         "order.json"
     //         ],
@@ -107,13 +134,14 @@ export class SwaggerUiComponent implements OnInit {
     //     },
     //     {
     //         "name": "Service",
+    //         "type" : "1",
     //         "files": [
     //         "service.json"
     //         ],
     //         "childs": []
     //     }
     // ]
-    
+    // this.dataSource.data = this.mainMenuData;
 
   }
 
