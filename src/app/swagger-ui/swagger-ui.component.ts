@@ -5,6 +5,7 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 declare const SwaggerUIBundle: any;
 interface MenuNode {
   name: string;
+  type: number;
   childs?: MenuNode[];
 }
 @Component({
@@ -45,13 +46,19 @@ export class SwaggerUiComponent implements OnInit {
 
   fileContent:any = []
   async loadEditorSpec(node: any){
-    this.appService.getContentOfFile(node).subscribe(data =>{
-      console.log(data)
-      this.fileContent = data;
+    if(node === null){
       let specDetails = "";
-      if(data != null) specDetails = this.fileContent["content"]
       this.editor.specActions.updateSpec(specDetails)
-    })
+    }else{
+      this.appService.getContentOfFile(node).subscribe(data =>{
+        console.log(data)
+        this.fileContent = data;
+        let specDetails = "";
+        if(data != null) specDetails = this.fileContent["content"]
+        this.editor.specActions.updateSpec(specDetails)
+      })
+    }
+    
   }
 
   async onClick(node: any){
@@ -65,7 +72,7 @@ export class SwaggerUiComponent implements OnInit {
     this.appService.getAllMenu().subscribe(async data => {
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
-      await this.loadEditorSpec(data)
+      await this.loadEditorSpec(null)
     })
   }
 

@@ -21,4 +21,18 @@ export class AppService {
       return this.http.post(api_url, body,{'headers':headers})
     }
 
+    loginUser(user:any){
+      let api_url = "http://localhost:8080/exchange-portal-0.0.1-SNAPSHOT/login";
+      const headers = { 'content-type': 'application/json'}
+      const body=JSON.stringify(user);
+      return this.http.post(api_url, body,{'headers':headers})
+    }
+
+    signUpUser(user:any){
+      let api_url = "http://localhost:8080/exchange-portal-0.0.1-SNAPSHOT/signup";
+      const headers = { 'content-type': 'application/json'}
+      const body=JSON.stringify(user);
+      return this.http.post(api_url, body,{'headers':headers})
+    }
+
 }
