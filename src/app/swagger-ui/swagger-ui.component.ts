@@ -24,9 +24,9 @@ export class SwaggerUiComponent implements OnInit {
     menuSelected: "",
     button : "Create"
   }
-  
+  render: any;
   ngOnInit(): void {
-    const ui = SwaggerUIBundle({
+    this.render = SwaggerUIBundle({
         dom_id: '#swagger-ui',
         layout: 'BaseLayout',
         presets: [
@@ -57,7 +57,9 @@ export class SwaggerUiComponent implements OnInit {
       if(node.type != 1){
           this.appService.getFileData(node).subscribe(data => {
                 this.fileData = data;
-                // this.fileDataSource.data = this.fileData;
+                let fileContent = "";
+                if(data != null) fileContent = this.fileData["content"]
+                this.render.specActions.updateSpec(fileContent)
           })
       }
       console.log(this.fileData);
