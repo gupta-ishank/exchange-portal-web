@@ -16,6 +16,10 @@ export class SwaggerUiComponent implements OnInit {
 
   title = 'EXCHANGE-PORTAL-UI';
 
+  uiControl = {
+    toogleSideBar: false
+  }
+  
   treeControl = new NestedTreeControl<MenuNode>(node => node.childs);
   dataSource = new MatTreeNestedDataSource<MenuNode>();
   mainMenuData: any = []
@@ -57,11 +61,11 @@ export class SwaggerUiComponent implements OnInit {
     event?.stopPropagation()
  }
 
-
   refreshMenu() {
-    this.appService.getAllMenu().subscribe(data => {
+    this.appService.getAllMenu().subscribe(async data => {
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
+      await this.loadEditorSpec(data)
     })
   }
 
