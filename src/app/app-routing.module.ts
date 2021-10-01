@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
+import { SignupComponent } from './signup/signup.component';
 import { SwaggerUiComponent } from './swagger-ui/swagger-ui.component';
 
 const routes: Routes = [
     {path: 'swagger', component: SwaggerUiComponent},
-    {path: '', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({

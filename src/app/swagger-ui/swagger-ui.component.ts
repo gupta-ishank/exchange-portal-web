@@ -1,10 +1,13 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppService } from '../app.service';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
-import { MenuNode } from '../menuNode'
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 declare const SwaggerUIBundle: any;
-
+interface MenuNode {
+  name: string;
+  type: number;
+  childs?: MenuNode[];
+}
 @Component({
   selector: 'app-swagger-ui',
   templateUrl: './swagger-ui.component.html',
@@ -14,137 +17,63 @@ export class SwaggerUiComponent implements OnInit {
 
   title = 'EXCHANGE-PORTAL-UI';
 
-  treeControl = new NestedTreeControl<MenuNode>(node => node.childs); 
-  dataSource = new MatTreeNestedDataSource<MenuNode>();
-//   fileDataSource = new MatTreeNestedDataSource<MenuNode>();
-  mainMenuData:any = []  
-  fileData:any = [] 
-  allMenuData:any = [] 
-  uiToogler = {
-    menuSelected: "",
-    button : "Create"
+  uiControl = {
+    toogleSideBar: false
   }
-  render: any;
+  
+  treeControl = new NestedTreeControl<MenuNode>(node => node.childs);
+  dataSource = new MatTreeNestedDataSource<MenuNode>();
+  mainMenuData: any = []
+
+  editor : any
+  constructor(private appService: AppService) {
+    this.refreshMenu();
+  }
   ngOnInit(): void {
-    this.render = SwaggerUIBundle({
-        dom_id: '#swagger-ui',
-        layout: 'BaseLayout',
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIBundle.SwaggerUIStandalonePreset
-        ],
-        url: 'https://petstore.swagger.io/v2/swagger.json',
-      });
+    this.editor = SwaggerUIBundle({
+      dom_id: '#swagger-ui',
+      layout: 'BaseLayout',
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIBundle.SwaggerUIStandalonePreset
+      ],
+      url: 'https://petstore.swagger.io/v2/swagger.json',
+    });
   }
 
-  constructor(private appService: AppService) { 
-    this.refreshMenu();
+  hasChild = (_: number, node: MenuNode) => !!node.childs && node.childs.length > 0; // !! = ?
+
+
+  fileContent:any = []
+  async loadEditorSpec(node: any){
+    if(node === null){
+      let specDetails = "";
+      this.editor.specActions.updateSpec(specDetails)
+    }else{
+      this.appService.getContentOfFile(node).subscribe(data =>{
+        console.log(data)
+        this.fileContent = data;
+        let specDetails = "";
+        if(data != null) specDetails = this.fileContent["content"]
+        this.editor.specActions.updateSpec(specDetails)
+      })
+    }
+    
+  }
+
+  async onClick(node: any){
+    if(node.type != 1){
+      await this.loadEditorSpec(node)
+    }
+    event?.stopPropagation()
  }
 
- hasChild = (_: number, node: MenuNode) => !!node.childs && node.childs.length > 0; // !! = ?
-   onClick(nameSearch: any){
-     this.uiToogler.button = "Update"
-    for (const menu of this.allMenuData) {
-      if(menu.name === nameSearch){
-        // this.menuData = menu
-        this.uiToogler.menuSelected = nameSearch;
-      }
-    } 
-    event?.stopPropagation()
-  }
-
-  doubleClick(node: MenuNode){
-      if(node.type != 1){
-          this.appService.getFileData(node).subscribe(data => {
-                this.fileData = data;
-                let fileContent = "";
-                if(data != null) fileContent = this.fileData["content"]
-                this.render.specActions.updateSpec(fileContent)
-          })
-      }
-      console.log(this.fileData);
-  }
-
-  refreshMenu(){
-    
-
-    this.appService.getAllMenu().subscribe(data =>{
-        this.mainMenuData = data
-        this.dataSource.data = this.mainMenuData;
+  refreshMenu() {
+    this.appService.getAllMenu().subscribe(async data => {
+      this.mainMenuData = data
+      this.dataSource.data = this.mainMenuData;
+      await this.loadEditorSpec(null)
     })
-    // this.mainMenuData = [
-    //     {
-    //         "name": "Music",
-    //         // "route": "/{name}",
-    //         "type" : "1",
-    //         "files": [
-    //         "music.json"
-    //         ],
-    //         "childs": [
-    //         {
-    //             "name": "New folder",
-    //             "type" : "1",
-    //             "files": [],
-    //             "childs": [
-    //             {
-    //                 "name": "nested.json",
-    //                 "type" : "2",
-    //                 "files": [],
-    //                 "childs": []
-    //             }
-    //             ]
-    //         },
-    //         {
-    //             "name": "Sub Music",
-    //             "type" : "1",
-    //             "files": [
-    //             "new folder.json"
-    //             ],
-    //             "childs": [
-    //                 {
-    //                     "name": "nested",
-    //                     "type" : "1",
-    //                     "files": [],
-    //                     "childs": []
-    //                 }
-    //                 ]
-    //         }
-    //         ]
-    //     },
-    //     {
-    //         "name": "New User",
-    //         "type" : "1",
-    //         "files": [
-    //         "new user.json"
-    //         ],
-    //         "childs": [
-    //             {
-    //                 "name": "nested",
-    //                 "type" : "1",
-    //                 "files": [],
-    //                 "childs": []
-    //             }
-    //             ]
-    //     },
-    //     {
-    //         "name": "Order",
-    //         "type" : "1",
-    //         "files": [
-    //         "order.json"
-    //         ],
-    //         "childs": []
-    //     },
-    //     {
-    //         "name": "Service",
-    //         "type" : "1",
-    //         "files": [
-    //         "service.json"
-    //         ],
-    //         "childs": []
-    //     }
-    // ]
-    // this.dataSource.data = this.mainMenuData;
-
   }
 
 }
