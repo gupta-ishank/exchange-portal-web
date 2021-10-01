@@ -20,12 +20,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
   response: any = [];
+  status = "";
   handleSignUp(){
     this.service.signUpUser(this.newUser).subscribe(data => {
         this.response = data;
         if(this.response.status == true)
             this.route.navigate(['/swagger']);
         else{
+            status = "User Exists!";
             console.log("User Exists!");
         }
     })

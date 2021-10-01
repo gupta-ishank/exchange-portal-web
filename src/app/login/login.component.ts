@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   response: any = [];
+  status = "";
   handleLogin(){
     console.log(this.user)
     this.service.loginUser(this.user).subscribe(data =>{
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
         if(this.response.status == true)
             this.route.navigate(['/swagger'])
         else{
+            status = "Wrong Credentials!";
             console.log("Wrong Credentials!");
         }
     })

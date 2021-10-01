@@ -58,8 +58,9 @@
       </div>
       <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)] = "newUser.email">
      </div>
+     <p>{{status}}</p>
      <div class="form-group">
-      <input value="Sign Up" class="btn float-right login_btn" (click) = "handleSignUp()">
+      <button value="Sign Up" class="btn float-right login_btn" (click) = "handleSignUp()">Sign Up</button>
      </div>
     </form>
    </div>
