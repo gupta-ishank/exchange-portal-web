@@ -63,8 +63,10 @@ export class SwaggerUiComponent implements OnInit {
 
   async onClick(node: any){
     if(node.type != 1){
-      let path = node.route;
-      await this.loadEditorSpec(path)
+      let data = {
+          path : node.route
+      }
+      await this.loadEditorSpec(data)
     }
     event?.stopPropagation()
  }
