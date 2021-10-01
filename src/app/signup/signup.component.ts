@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
     this.service.signUpUser(this.newUser).subscribe(data => {
         this.response = data;
         if(this.response.status == true)
-            this.route.navigate(['/swagger']);
+            this.route.navigate(['/login']);
         else{
             status = "User Exists!";
             console.log("User Exists!");

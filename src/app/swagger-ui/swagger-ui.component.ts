@@ -37,7 +37,7 @@ export class SwaggerUiComponent implements OnInit {
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
       ],
-      url: 'https://petstore.swagger.io/v2/swagger.json',
+      url: ,
     });
   }
 

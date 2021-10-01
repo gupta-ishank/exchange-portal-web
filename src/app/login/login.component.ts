@@ -11,8 +11,8 @@ import { AppService } from '../app.service';
 export class LoginComponent implements OnInit {
 
   user = {
-    username: "Admin",
-    password: "admin"
+    username: "",
+    password: ""
   }
   constructor(private route: Router, private service: AppService) { }
 
