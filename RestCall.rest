@@ -1,0 +1,6 @@
+POST http://localhost:8080/exchange-portal-0.0.1-SNAPSHOT/
+Content-Type: application/json
+
+{
+    "path": "E:\\Test\\Music\\music.json"
+}
