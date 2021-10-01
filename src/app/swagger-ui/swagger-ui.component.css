@@ -1,0 +1,52 @@
+.nav-color{
+  background-color: black;
+  color: whitesmoke;
+}
+
+.dev-container{
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}  
+
+
+#swagger-ui{
+  height: 100vh;
+}  
+
+.example-tree-invisible {
+  display: none;
+}  
+  
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}  
+
+
+.example-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 8px;
+}  
+
+
+.example-tree div[role=group] > .mat-tree-node {
+  padding-left: 23px;
+}  
+
+.mat-tree-node{
+  cursor: pointer;
+}
+
+.mat-tree-node span{
+  padding: 5px;
+  display: flex;
+}  
+.mat-tree-node span mat-icon{
+  margin-top: -1px;
+} 
+
+.mat-tree-node span:hover{
+  background-color: #e0f2f1;
+}  
