@@ -18,7 +18,7 @@ import { SignupComponent } from './signup/signup.component';
     AppComponent,
     SwaggerUiComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

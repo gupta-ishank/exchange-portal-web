@@ -11,7 +11,7 @@
 
 
 #swagger-ui{
-  height: 100vh;
+  height: 80vh;
 }  
 
 .example-tree-invisible {
@@ -47,7 +47,10 @@
   margin-top: -1px;
 } 
 
-.mat-tree-node span:hover{
+.mat-tree-node span div:hover{
   background-color: #e0f2f1;
+}  
+.mat-tree-node span div{
+  width: 220px;
 }  
 

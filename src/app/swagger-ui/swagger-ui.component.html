@@ -6,30 +6,64 @@
     <span class="header-color">Exchange Web Portal</span>
   </mat-toolbar>
   <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" [opened] = "uiControl.toogleSideBar">
-      <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+    <mat-drawer mode="side" [opened] = "uiControl.toogleSideBar" >
+      <div class="flex-shrink-0 p-3 bg-white" style=" width: 290px; white-space: nowrap; border: 1px; overflow: auto;">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
           
-          <mat-tree-node *matTreeNodeDef="let node" (click)="onClick(node)" style="cursor: pointer;">
+          <mat-tree-node *matTreeNodeDef="let node" style="cursor: pointer;">
             <span>
               <mat-icon class="material-icons" *ngIf="node.type == 1">
                 {{'folder'}}
               </mat-icon>
-              <mat-icon class="material-icons" *ngIf="node.type != 1">
-                description
-              </mat-icon>
-              {{node.name}}
+              <!-- <mat-icon class="material-icons" *ngIf="node.type != 1">
+                description  
+              </mat-icon> -->
+              <p *ngIf="node.type == 1">
+                {{node.name}}
+              </p>  
+              <div style="display: flex; align-items: center; margin-left: -30px;" *ngIf="node.name == 'get'">
+                
+                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: #61AFFE; width: 70px; height: 36px;">{{node.name}}</button></div>
+                <div style="display:flex; flex-direction: column;">
+                  <div>{{node.route}}</div>
+                  <div style="text-overflow: ellipsis;">{{node.description}}</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; margin-left: -30px; " *ngIf="node.name == 'post'">
+                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: rgb(73,204,144); width: 70px; height: 36px;">{{node.name}}</button></div>
+                <div style="display:flex; flex-direction: column;">
+                  <div>{{node.route}}</div>
+                  <div style="text-overflow: ellipsis; overflow: hidden;">{{node.description}}</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; margin-left: -30px; " *ngIf="node.name == 'put'">
+                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: rgb(252,161,48); width: 70px; height: 36px;">{{node.name}}</button></div>
+                <div style="display:flex; flex-direction: column;">
+                  <div>{{node.route}}</div>
+                  <div style="text-overflow: ellipsis; overflow: hidden;">{{node.description}}</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; margin-left: -30px; " *ngIf="node.name == 'delete'">
+                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: #F93E3E; width: 70px; height: 36px;">{{node.name}}</button></div>
+                <div style="display:flex; flex-direction: column;">
+                  <div>{{node.route}}</div>
+                  <div style="text-overflow: ellipsis; overflow: hidden;">{{node.description}}</div>
+                </div>
+              </div>
             </span>
           </mat-tree-node>  // Which array is travelling....
-    
+
           <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-              <div class="mat-tree-node" (click)="onClick(node)">
+              <div class="mat-tree-node" (click)="onClick(node)" (dblclick)="onClick(node)" style="margin-left: -20px;">
                 <span matTreeNodeToggle >
                   <mat-icon class="material-icons">
                     {{treeControl.isExpanded(node) ? 'arrow_drop_down' : 'arrow_right'}}
                   </mat-icon>
-                  <mat-icon class="material-icons">
+                  <mat-icon class="material-icons" *ngIf="node.type == 1">
                     {{treeControl.isExpanded(node) ? 'folder_open' : 'folder'}}
+                  </mat-icon>
+                  <mat-icon class="material-icons" *ngIf="node.type != 1">
+                    description
                   </mat-icon>
                   {{node.name}}
               </span>
