@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { CustomComponentComponent } from '../custom-component/custom-component.component'
 declare const SwaggerUIBundle: any;
 interface MenuNode {
   name: string;
@@ -16,10 +17,10 @@ interface MenuNode {
 export class SwaggerUiComponent implements OnInit {
 
   
-  title = 'EXCHANGE-PORTAL-UI';
+  title = 'API Exchange Portal';
 
   uiControl = {
-    toogleSideBar: false
+    toogleSideBar: true
   }
   
   treeControl = new NestedTreeControl<MenuNode>(node => node.childs);
@@ -39,6 +40,9 @@ export class SwaggerUiComponent implements OnInit {
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
       ],
+      //to inject custom components
+      plugins: [CustomComponentComponent],
+      // Layout: "./custom-component.component.html"
       // url: 'https://petstore.swagger.io/v2/swagger.json',
     });
   }
@@ -78,5 +82,4 @@ export class SwaggerUiComponent implements OnInit {
       await this.loadEditorSpec(null)
     })
   }
-
 }
