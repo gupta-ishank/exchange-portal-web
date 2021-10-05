@@ -6,12 +6,11 @@
 .dev-container{
   height: 100vh;
   width: 100%;
-  overflow: hidden;
 }  
 
 
 #swagger-ui{
-  height: 80vh;
+  height: 85vh;
 }  
 
 .example-tree-invisible {
@@ -47,10 +46,75 @@
   margin-top: -1px;
 } 
 
-.mat-tree-node span div:hover{
+/* .api-content:hover{
   background-color: #e0f2f1;
-}  
-.mat-tree-node span div{
-  width: 220px;
-}  
+  padding: 2px;
+  border-radius: 6px;
+}   */
+
+.api-content{
+  display: flex; 
+  align-items: center; 
+  margin-left: -30px;
+  width: auto;
+}
+
+.api-content .btn{
+  color: white; 
+  border: 0px; 
+  width: 70px; 
+  height: 36px; 
+  margin-right: 5px;
+}
+
+.api-content-details{
+  display:flex; 
+  flex-direction: column;
+}
+
+.api-content-path {
+  position: relative;
+}
+/* .api-content-description {
+  position: relative;
+} */
+.api-content-path span{
+  position: absolute;
+  display: inline-block;
+  visibility: hidden;
+  right: 0;
+  bottom: 15px;
+}
+.api-content-description span{
+  position: absolute;
+  display: inline-block;
+  visibility: hidden;
+  right: 0;
+  /* bottom: 10px; */
+  top: 20px;
+}
+
+.api-content-path:hover span{
+  background-color: lightblue;
+  border-radius: 3px;
+  padding: 1px 3px;
+  border-bottom:1px dotted #666;
+  visibility: visible;
+}
+.api-content-description:hover span{
+  background-color: lightcoral;
+  border-radius: 3px;
+  padding: 1px 3px;
+  border-bottom:1px dotted #666;
+  visibility: visible;
+  z-index: 1000;
+}
+
+.api-content-description{
+  width: 150px; 
+  white-space: nowrap;
+  overflow: hidden;                
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
 

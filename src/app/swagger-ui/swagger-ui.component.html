@@ -7,7 +7,7 @@
   </mat-toolbar>
   <mat-drawer-container class="example-container">
     <mat-drawer mode="side" [opened] = "uiControl.toogleSideBar" >
-      <div class="flex-shrink-0 p-3 bg-white" style=" width: 290px; white-space: nowrap; border: 1px; overflow: auto;">
+      <div class="flex-shrink-0 p-3 bg-white" style=" width: 280px; border: 1px; overflow: hidden;">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
           
           <mat-tree-node *matTreeNodeDef="let node" style="cursor: pointer;">
@@ -21,33 +21,32 @@
               <p *ngIf="node.type == 1">
                 {{node.name}}
               </p>  
-              <div style="display: flex; align-items: center; margin-left: -30px;" *ngIf="node.name == 'get'">
-                
-                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: #61AFFE; width: 70px; height: 36px;">{{node.name}}</button></div>
-                <div style="display:flex; flex-direction: column;">
-                  <div>{{node.route}}</div>
-                  <div style="text-overflow: ellipsis;">{{node.description}}</div>
+              <div class="api-content" *ngIf="node.name == 'get'">  
+                <div><button class="btn btn-primary" style="background-color: #61AFFE;">{{node.name}}</button></div>
+                <div class="api-content-details">
+                  <div class="api-content-path">{{node.route}}<span>{{node.route}}</span></div>
+                  <div class="api-content-description">{{node.description}}<span>{{node.description}}</span></div>
                 </div>
               </div>
-              <div style="display: flex; align-items: center; margin-left: -30px; " *ngIf="node.name == 'post'">
-                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: rgb(73,204,144); width: 70px; height: 36px;">{{node.name}}</button></div>
-                <div style="display:flex; flex-direction: column;">
-                  <div>{{node.route}}</div>
-                  <div style="text-overflow: ellipsis; overflow: hidden;">{{node.description}}</div>
+              <div class="api-content" *ngIf="node.name == 'post'">
+                <div><button class="btn btn-primary" style="background-color: rgb(73,204,144);">{{node.name}}</button></div>
+                <div class="api-content-details">
+                  <div class="api-content-path">{{node.route}}</div>
+                  <div class="api-content-description">{{node.description}}</div>
                 </div>
               </div>
-              <div style="display: flex; align-items: center; margin-left: -30px; " *ngIf="node.name == 'put'">
-                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: rgb(252,161,48); width: 70px; height: 36px;">{{node.name}}</button></div>
-                <div style="display:flex; flex-direction: column;">
-                  <div>{{node.route}}</div>
-                  <div style="text-overflow: ellipsis; overflow: hidden;">{{node.description}}</div>
+              <div class="api-content" *ngIf="node.name == 'put'">
+                <div><button class="btn btn-primary" style="background-color: rgb(252,161,48); ">{{node.name}}</button></div>
+                <div class="api-content-details">
+                  <div class="api-content-path">{{node.route}}</div>
+                  <div class="api-content-description">{{node.description}}</div>
                 </div>
               </div>
-              <div style="display: flex; align-items: center; margin-left: -30px; " *ngIf="node.name == 'delete'">
-                <div><button class="btn btn-primary" style="color: white; border: 0px; background-color: #F93E3E; width: 70px; height: 36px;">{{node.name}}</button></div>
-                <div style="display:flex; flex-direction: column;">
-                  <div>{{node.route}}</div>
-                  <div style="text-overflow: ellipsis; overflow: hidden;">{{node.description}}</div>
+              <div class="api-content" *ngIf="node.name == 'delete'">
+                <div><button class="btn btn-primary" style="background-color: #F93E3E; ">{{node.name}}</button></div>
+                <div class="api-content-details">
+                  <div class="api-content-path">{{node.route}}</div>
+                  <div class="api-content-description">{{node.description}}</div>
                 </div>
               </div>
             </span>
