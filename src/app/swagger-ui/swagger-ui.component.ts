@@ -41,7 +41,7 @@ export class SwaggerUiComponent implements OnInit {
         SwaggerUIBundle.SwaggerUIStandalonePreset
       ],
       //to inject custom components
-      plugins: [CustomComponentComponent],
+      // plugins: [CustomComponentComponent],
       // Layout: "./custom-component.component.html"
       // url: 'https://petstore.swagger.io/v2/swagger.json',
     });
@@ -64,10 +64,10 @@ export class SwaggerUiComponent implements OnInit {
         this.editor.specActions.updateSpec(specDetails)
       })
     }
-    
   }
 
   async onClick(node: any){
+    // if(this.treeControl.isExpanded(node)) this.treeControl.expansionModel; 
     if(node.type != 1){
       await this.loadEditorSpec(node)
     }

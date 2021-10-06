@@ -1,2 +1,80 @@
-<p>custom-component works!</p>
-<div>Hello</div>
+<!-- type 2-->
+<!-- <blockquote>
+    <p>Tip</p>
+    <p>It is recommended to check out 
+        <a href="/docs/notes-for-reader.html">Notes for the reader</a>. 
+        You might find this helpful as it contains <strong>Guidelines</strong> for using API references and <strong>Terminologies</strong> used here.</p>
+</blockquote> -->
+
+
+    <!--type 3-->
+
+<!-- <img class="gatsby-resp-image-image" style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;" alt="Authentication_Flow" title="" src="/static/f27c3cff2d51acfcf8f2baac3d0a3961/27b7a/api_mp_authentication%20flow.png" srcset="/static/f27c3cff2d51acfcf8f2baac3d0a3961/65ed1/api_mp_authentication%20flow.png 210w,
+/static/f27c3cff2d51acfcf8f2baac3d0a3961/d10fb/api_mp_authentication%20flow.png 420w,
+/static/f27c3cff2d51acfcf8f2baac3d0a3961/27b7a/api_mp_authentication%20flow.png 804w" sizes="(max-width: 804px) 100vw, 804px"> -->
+
+
+<!--type 1-->
+
+<!-- <div class="callout is-helpful">
+    <header>Try Angular without local setup</header>
+    <p>If you are new to Angular, you might want to start with <a href="start">Try it now!</a>, which introduces the essentials of Angular in the context of a ready-made basic online store app for you to examine and modify. This standalone tutorial takes advantage of the interactive <a href="https://stackblitz.com/">StackBlitz</a> environment for online development. You don't need to set up your local environment until you're ready.</p>
+</div> -->
+
+
+<div class="method-title">
+    <h1>{{methodTitle}}</h1><br>
+    <p>{{methodDescription}}</p>
+</div>
+
+<div *ngFor="let c of content">
+    <div class="alert" *ngIf="c.type == 1">
+        <div class="alert-header">
+            <header>{{c.header}}</header>
+        </div>
+        <div class="alert-body">
+            <p style="font-size: 13px;">{{c.body}}</p>
+        </div>
+    </div>
+    <div *ngIf="c.type == 2">
+        <div class="callout callout-warning">
+            <h2 class="callout-header">Tip</h2>
+            <p class="callout-body">{{c.body}}</p>
+        </div>
+    </div>
+    <div *ngIf="c.type == 3">
+        <div>
+            <img width="300px" height="200px" alt="Authentication_Flow" title="" src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg">
+        </div>
+    </div>
+</div>
+
+<div class="is-helpful3">
+    <pre class="is-help">{{ content | json }}</pre>
+</div>
+
+<p>Work in Progress! Men at work!</p>
+<div>
+<table class="thead-dark" >
+    <thead>
+    <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Header</th>
+        <th scope="col">Body</th>
+    </tr>
+    </thead>
+    <tr *ngFor="let data of tableData">
+        <td *ngFor="let column of tableDataKeys">{{ setData(data, column) }} hjhj</td>
+    </tr>
+
+<!-- 
+<div ng-repeat="item in tableData">
+   <div ng-repeat="(key, value) in item">
+   {{key}}
+   {{value}}
+   </div>
+</div>
+ -->
+
+</table>
+</div>

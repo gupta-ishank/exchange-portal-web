@@ -51,11 +51,11 @@ body{
   margin-top: -1px;
 } 
 
-.api-content:hover{
+/* .api-content:hover{
   background-color: #e0f2f1;
   padding: 2px;
   border-radius: 6px;
-}  
+}   */
 
 .api-content{
   display: flex; 
