@@ -13,6 +13,7 @@ import { SwaggerUiComponent } from './swagger-ui/swagger-ui.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CustomComponentComponent } from './custom-component/custom-component.component';
+import {AngularTreeGridModule} from 'angular-tree-grid';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CustomComponentComponent } from './custom-component/custom-component.co
     DemoMaterialModule,
     FormsModule,
     BrowserAnimationsModule,
+    AngularTreeGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "angular-tree-grid": "^3.0.1",
     "bootstrap": "^5.1.2",
     "material-ui": "^0.20.2",
     "rxjs": "~6.6.0",

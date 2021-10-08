@@ -1,1 +1,5 @@
 <router-outlet></router-outlet>
+
+<!-- <button (click)="collapseAll()">Collapse All</button><button (click)="expandAll()">Expand All</button> -->
+<p></p>
+<db-angular-tree-grid (rowselect)="expandAll($event)" #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
