@@ -10,8 +10,8 @@ import { AppService } from '../app.service';
 export class LoginComponent implements OnInit {
 
   user = {
-    username: "Admin",
-    password: "admin"
+    userName: "",
+    password: ""
   }
   constructor(private route: Router, private service: AppService) { }
 
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     console.log(this.user)
     this.service.loginUser(this.user).subscribe(data =>{
       this.status = data;
-      if(this.status.status){
+      console.log(data);
+      if(this.status.length != 0){
         this.route.navigate(['/swagger']);
       }else{
         console.log("Invalid credentials");

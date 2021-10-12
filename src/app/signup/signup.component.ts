@@ -10,7 +10,7 @@ import { AppService } from '../app.service';
 export class SignupComponent implements OnInit {
 
   newUser = {
-    username: "",
+    userName: "",
     password: "",
     confirmPassword: "",
     email: ""
@@ -28,8 +28,9 @@ export class SignupComponent implements OnInit {
       this.statusMessage = "Password doesn't match";
     }else{
       this.service.signUpUser(this.newUser).subscribe(data => {
-        this.status = data;
-        if(this.status.status){
+        // this.status = data;
+        console.log(data);
+        if(data){
           this.route.navigate(['/login']);
         }else{
           console.log("User already exists");
