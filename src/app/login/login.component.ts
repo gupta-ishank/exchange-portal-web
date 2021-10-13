@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     password: ""
   }
   constructor(private route: Router, private service: AppService) {
-    if(localStorage.getItem("user") != null || localStorage.getItem("user") != ""){
+    if(localStorage.getItem("user") != null){
       this.route.navigate(['/swagger']);
     }
    }
