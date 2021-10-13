@@ -120,5 +120,6 @@ a:-webkit-any-link {
 img{
     /* height: 20%; */
     /* width: 20%; */
-    opacity: 0.8;
+    height: 70%;
+    opacity: 0.3;
 }

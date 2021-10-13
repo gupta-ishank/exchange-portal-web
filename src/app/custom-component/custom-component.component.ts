@@ -86,7 +86,6 @@ export class CustomComponentComponent implements OnInit{
         width: '200px'
       }
     ],
-    subgrid: 'true',
     subgrid_config: {
       show_summary_row: true
     }
