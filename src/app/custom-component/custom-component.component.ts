@@ -84,6 +84,16 @@ export class CustomComponentComponent implements OnInit{
         name: 'Type',
         header: 'Type',
         width: '200px'
+      },
+      {
+        name: 'Mendate',
+        header: 'Mandatory',
+        width: '200px'
+      },
+      {
+        name: 'Description',
+        header: 'Description',
+        width: '200px'
       }
     ],
     subgrid_config: {
