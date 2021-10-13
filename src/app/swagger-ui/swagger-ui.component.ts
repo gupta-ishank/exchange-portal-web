@@ -4,6 +4,7 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { CustomComponentComponent } from '../custom-component/custom-component.component'
 import { MatSidenavContainer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 declare const SwaggerUIBundle: any;
 interface MenuNode {
   name: string;
@@ -18,7 +19,9 @@ interface MenuNode {
 export class SwaggerUiComponent implements OnInit{
 
   
-  title = 'API Exchange Portal';
+  title = 'Netmeds Documentations';
+
+  currentUser : any;
 
   @ViewChild(CustomComponentComponent) customReference : CustomComponentComponent | undefined;
 
@@ -31,30 +34,15 @@ export class SwaggerUiComponent implements OnInit{
   mainMenuData: any = []
 
   editor : any
-  constructor(private appService: AppService, private customComponentComponent: CustomComponentComponent) {
+  constructor(private appService: AppService, 
+    private route: Router) {
     this.refreshMenu();
   }
 
   ngOnInit(): void {
-    // this.editor = SwaggerUIBundle({
-    //   dom_id: '#swagger-ui',
-    //   layout: 'BaseLayout',
-    //   presets: [
-    //     SwaggerUIBundle.presets.apis,
-    //     SwaggerUIBundle.SwaggerUIStandalonePreset
-    //   ],
-    //   //to inject custom components
-    //   // plugins: [CustomComponentComponent],
-    //   // Layout: "./custom-component.component.html"
-    //   // url: 'https://petstore.swagger.io/v2/swagger.json',
-    // });
+    
   }
-  // @ViewChild(MatSidenavContainer) sidenavContainer: MatSidenavContainer | undefined;
-  // ngAfterViewInit() {
-  //   if(this.sidenavContainer)
-  //     this.sidenavContainer.scrollable.elementScrolled().subscribe(() => /* react to scrolling */);
-  // }
-
+  
   hasChild = (_: number, node: MenuNode) => !!node.childs && node.childs.length > 0; // !! = ?
 
 
@@ -84,20 +72,29 @@ export class SwaggerUiComponent implements OnInit{
 
   refreshMenu() {
     this.appService.getAllMenu().subscribe(async data => {
-      console.log(data);
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
-      // await this.loadEditorSpec(null)
+      let user = localStorage.getItem("user");
+      
+      console.log("User = " + user)
+      if(localStorage.length == 0){
+        this.route.navigate(['/login']);
+      }else{
+
+        this.currentUser = JSON.parse(user == null ? " ": user);
+      }
     })
   }
 
   renderData : any;
-  // parentMessage : any;
   handleRenderData(node : any){
     console.log(node);
     this.renderData = node;
-    // this.parentMessage = node;
-    // console.log( this.customReference );
     this.customReference?.renderMethodData(node);
+  }
+
+  handleLogout(){
+    localStorage.removeItem("user");
+    this.route.navigate(['/login']);
   }
 }

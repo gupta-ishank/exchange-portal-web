@@ -1,10 +1,10 @@
-<div  *ngIf="childMessage == null" style=" margin-top: 200px; text-align: center ; height: 100vh; justify-content: center;">
-    <img src="../../assets/api.png" alt="" height="100px" width="100px">
-    <h1  > Welcome to the API - Exchange Portal </h1>
+<div *ngIf="childMessage == null" style=" display: grid; place-items: center; margin-top: 200px; ">
+    <img src="../../assets/netmeds.png" alt="" height="100px" width="100px">
+    <!-- <h1  > Welcome to the API - Exchange Portal </h1> -->
 </div>
 
 
-<div style="height: 100vh; margin-left: 50px; scroll-behavior: smooth; " #uniqueId >
+<div style="margin-left: 50px; " *ngIf="childMessage != null">
     <div class="method-title" style="margin-top: 50px">
         <h1>{{methodTitle}}</h1>
         <p> {{methodDescription}}</p>
@@ -22,7 +22,7 @@
     <br>
     <div *ngIf="childMessage">
         <h2 style="font-weight: bold;">Basic Information</h2>
-        <db-angular-tree-grid (rowselect)="expandAll($event)" #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
+        <db-angular-tree-grid  #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
     </div>
     
     <br>
@@ -35,7 +35,7 @@
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayloadDetails)">
         <h2 style="font-weight: bold;">Request Payload Details </h2>
-        <db-angular-tree-grid  (rowselect)="expandAll2($event)" #angularGrid2 [data]="data2" [configs]="configs2"></db-angular-tree-grid>
+        <db-angular-tree-grid  #angularGrid2 [data]="data2" [configs]="configs2" ></db-angular-tree-grid>
     </div> 
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload)" class="payload-div">

@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppService {
 
+    currentUser: any
+
     constructor(private http: HttpClient) { }
 
     getAllMenu(){ // we will use this
