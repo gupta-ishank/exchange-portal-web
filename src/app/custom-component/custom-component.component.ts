@@ -61,18 +61,6 @@ export class CustomComponentComponent implements OnInit{
     ]
   };
 
-  collapseAll() {
-    if(this.angularGrid)
-      this.angularGrid.collapseAll();
-  }
-
-  expandAll($event :any) {
-    console.log($event.data.id)
-    let id = $event?.data?.id;
-    console.log(this.endpoint);
-    if(this.angularGrid)
-      this.angularGrid?.expandRow(id);
-  }
 
 //for request payload details
   @ViewChild('angularGrid2') angularGrid2: AngularTreeGridComponent | undefined;
@@ -90,15 +78,19 @@ export class CustomComponentComponent implements OnInit{
       {
         name: 'parameter',
         header: 'Parameter',
-        width: '200px'
+        width: '200px',
       },
       {
         name: 'Type',
         header: 'Type',
         width: '200px'
       }
-    ]
+    ],
+    subgrid_config: {
+      show_summary_row: true
+    }
   };
+  
 
   collapseAll2() {
     if(this.angularGrid2)
@@ -111,7 +103,7 @@ export class CustomComponentComponent implements OnInit{
     console.log("here");
     if(this.angularGrid2){
       console.log(id);
-      this.angularGrid2?.expandRow(id);
+      this.angularGrid2?.expandAll();
       console.log("here3");
     }
   }

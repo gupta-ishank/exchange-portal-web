@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
     // console.log(this.user)
     this.service.loginUser(this.user).subscribe(data =>{
       this.status = data;
-      console.log(this.status);
+      console.log(this.status[0]);
       if(data != null && this.status.length != 0){
         localStorage.setItem("user", JSON.stringify(this.status[0]));
-        console.log("set user = " + this.status);
+        console.log("set user = " + this.status[0].userName);
         this.route.navigate(['/swagger']);
       }else{
         console.log("Invalid credentials");

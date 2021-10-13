@@ -75,8 +75,9 @@ export class SwaggerUiComponent implements OnInit{
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
       let user = localStorage.getItem("user");
+      
       console.log("User = " + user)
-      if(user === "" || user === null){
+      if(localStorage.length == 0){
         this.route.navigate(['/login']);
       }else{
 
