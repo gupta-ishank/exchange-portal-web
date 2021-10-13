@@ -1,19 +1,30 @@
 <div class="dev-container">
   <mat-toolbar class="nav-color">
-    <button mat-icon-button class="example-icon" (click)="uiControl.toogleSideBar = !uiControl.toogleSideBar">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span class="header-color">{{title}}</span>
+    <div class="nav-title">
+      <button mat-icon-button class="example-icon" (click)="uiControl.toogleSideBar = !uiControl.toogleSideBar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="header-color">{{title}}</span>
+    </div>
+    <div class="user-ui">
+      <p>{{currentUser?.userName}}</p>
+      <span class="material-icons">
+        account_circle</span>
+        <p (click)="handleLogout()">logout</p>
+    </div>
+    
+    
   </mat-toolbar>
   <mat-drawer-container class="example-container" autosize>
 
     <!-- <div> -->
-      <mat-drawer  mode="side" [opened] = "uiControl.toogleSideBar" #drawer class="example-sidenav" style="scrollbar-width: thin; overflow-y: auto; scroll-padding-right: 10px; ">
+      <mat-drawer  mode="side" [opened] = "uiControl.toogleSideBar" #drawer 
+      class="example-sidenav" id="drawer">
 
         <!-- <mat-sidenav class="no-v-scroll" style="width: 320px;"> -->
-          <mat-toolbar style="flex: 0 0 128px; font-size: medium;">File Explorer</mat-toolbar>
+          <!-- <mat-toolbar style="flex: 0 0 128px; font-size: medium;">Netmeds Documentations</mat-toolbar> -->
 
-          <div class="flex-shrink-0 p-3 bg-white sidemenuStyle" style="overflow-y: auto;">
+          <div class="flex-shrink-0 p-3 bg-white sidemenuStyle">
             <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
               
               <mat-tree-node *matTreeNodeDef="let node" style="cursor: pointer;">
@@ -67,7 +78,7 @@
                       <mat-icon class="material-icons" *ngIf="node.type == 1">
                         {{treeControl.isExpanded(node) ? 'folder_open' : 'folder'}}
                       </mat-icon>
-                      <mat-icon class="material-icons" *ngIf="node.type != 1">
+                      <mat-icon class="material-icons" style="font-size: 20px;" *ngIf="node.type != 1">
                         description
                       </mat-icon>
                       {{node.name}}

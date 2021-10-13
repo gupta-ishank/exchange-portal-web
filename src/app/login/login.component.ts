@@ -13,7 +13,11 @@ export class LoginComponent implements OnInit {
     userName: "",
     password: ""
   }
-  constructor(private route: Router, private service: AppService) { }
+  constructor(private route: Router, private service: AppService) {
+    if(localStorage.getItem("user") != null || localStorage.getItem("user") != ""){
+      this.route.navigate(['/swagger']);
+    }
+   }
 
   ngOnInit(): void {
   }
@@ -21,11 +25,13 @@ export class LoginComponent implements OnInit {
   status: any;
   statusMessage: any= "";
   handleLogin(){
-    console.log(this.user)
+    // console.log(this.user)
     this.service.loginUser(this.user).subscribe(data =>{
       this.status = data;
-      console.log(data);
-      if(this.status.length != 0){
+      console.log(this.status);
+      if(data != null && this.status.length != 0){
+        localStorage.setItem("user", JSON.stringify(this.status[0]));
+        console.log("set user = " + this.status);
         this.route.navigate(['/swagger']);
       }else{
         console.log("Invalid credentials");

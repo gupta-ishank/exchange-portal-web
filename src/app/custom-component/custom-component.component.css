@@ -116,3 +116,7 @@ a:-webkit-any-link {
 .payload-div{
     margin-right: 30px;
 }
+img {
+    height: 70%;
+    opacity: 0.3;
+}

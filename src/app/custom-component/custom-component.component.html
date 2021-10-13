@@ -1,10 +1,13 @@
-<div  *ngIf="childMessage == null" style=" margin-top: 200px; text-align: center ; height: 100vh; justify-content: center;">
-    <img src="../../assets/api.png" alt="" height="100px" width="100px">
-    <h1  > Welcome to the API - Exchange Portal </h1>
+
+
+<div  *ngIf="childMessage == null"
+style="display: flex; align-items: center; justify-content: center; height: 90vh;">
+    <img src="../../assets/netmeds.png" alt="">
+    <!-- <h1  > Welcome to the API - Exchange Portal </h1> -->
 </div>
 
 
-<div style="height: 100vh; margin-left: 50px; scroll-behavior: smooth; " #uniqueId >
+<div style=" margin-left: 50px;" *ngIf="childMessage != null"  >
     <div class="method-title" style="margin-top: 50px">
         <h1>{{methodTitle}}</h1>
         <p> {{methodDescription}}</p>

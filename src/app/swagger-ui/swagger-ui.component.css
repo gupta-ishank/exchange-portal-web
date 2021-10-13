@@ -4,13 +4,13 @@ body{
 .sidemenuStyle{
   width: 280px; 
   border: 1px; 
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 
 
 /* width */
-::-webkit-scrollbar{
+.dev-container ::-webkit-scrollbar{
   width: 8px;
 }
 
@@ -37,11 +37,10 @@ body{
 }
 
 .nav-color{
-
-  background-color: black;
+  display: flex;
+  background-color:#32aeb1;
+  /* background: #32aeb1; */
   color: whitesmoke;
-  /* position: sticky; 
-  overflow: hidden; */
 }
 .p {
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -81,6 +80,7 @@ body{
 
 .mat-tree-node{
   cursor: pointer;
+  min-height: 15px;
 }
 
 .mat-tree-node span{
@@ -122,45 +122,7 @@ body{
   flex-direction: column;
 }
 
-/* .api-content-path {
-  position: relative;
-} */
-/* .api-content-description {
-  position: relative;
-} */
-/* .api-content-path span{
-  position: absolute;
-  display: inline-block;
-  visibility: hidden;
-  right: 0;
-  left: 30px;
-  bottom: 15px;
-}
-.api-content-description span{
-  position: absolute;
-  display: inline-block;
-  visibility: hidden;
-  right: 0;
-  bottom: 10px;
-  top: 20px;
-} */
 
-/* .api-content-path:hover span{
-  background-color: lightblue;
-  border-radius: 3px;
-  padding: 1px 3px;
-  border-bottom:1px dotted #666;
-  visibility: visible;
-  z-index: 999999;
-}
-.api-content-description:hover span{
-  background-color: lightcoral;
-  border-radius: 3px;
-  padding: 1px 3px;
-  border-bottom:1px dotted #666;
-  visibility: visible;
-  z-index: 999999;
-} */
 
 .api-content-description{
   width: 150px; 
@@ -170,6 +132,41 @@ body{
   font-size: 11px;
 }
 
-/* .mat-drawer-inner-container ng-tns-c104-0 {
-  scrollbar-width: none;
+.example-container{
+  height: 90vh;
+}
+::ng-deep .mat-drawer-inner-container {
+  height: unset !important;
+}
+
+.nav-color .nav-title{
+  display: flex;
+  flex: 1;
+}
+.nav-color div span{
+  margin-top: 5px;
+}
+/* .nav-color p {
+  font-size: small;
+  margin-right: 30px;
+  margin-top: -10px;
+}
+.nav-color .material-icons{
+  padding: 10px;
+  margin-top: 10px;
 } */
+.user-ui {
+  display: flex;
+  margin-top: 10px;
+}
+.user-ui p{
+  font-size: medium;
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.mat-icon {
+  height: unset;
+  width: unset;
+}
