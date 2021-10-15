@@ -1,6 +1,5 @@
 <div *ngIf="childMessage == null" style="display: flex; align-items: center; justify-content: center; height: 90vh; ">
     <img src="../../assets/netmeds.png" alt="" >
-    <!-- <h1  > Welcome to the API - Exchange Portal </h1> -->
 </div>
 
 
@@ -18,7 +17,6 @@
             <p class="callout-body">{{tip}}</p>
         </div>
     </div>
-       
 
     <br>
     <div *ngIf="childMessage">
@@ -26,26 +24,67 @@
         <db-angular-tree-grid  #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
     </div>
     
-    <br>
+    <br> 
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayload)" class="payload-div">
         <h2 style="font-weight: bold;">Request Payload</h2>
-        <div class="is-helpful3">
-            <pre class="is-help">{{ requestPayload | json }}</pre>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active" nav-link-color="green" id="pills-example-request-tab" data-bs-toggle="pill" data-bs-target="#pills-example-request" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Schema</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-schema-request-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-request" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Example</button>
+            </li>
+        </ul>   
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-example-request" role="tabpanel" aria-labelledby="pills-example-request-tab">
+
+                    <div class="is-helpful3">
+                        <pre class="is-help">{{ requestPayload | json }}</pre>
+                    </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-schema-request" role="tabpanel" aria-labelledby="pills-schema-request-tab">              
+                Request Example Not Implemented
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>          
+            </div>      
         </div>
     </div>
+    
     <br>
+    
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayloadDetails)">
         <h2 style="font-weight: bold;">Request Payload Details </h2>
         <db-angular-tree-grid  #angularGrid2 [data]="data2" [configs]="configs2" ></db-angular-tree-grid>
     </div> 
-    <br>
-    <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload)" class="payload-div">
+    
+    <br> 
+    <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload)" class="payload-div"> 
         <h2 style="font-weight: bold;">Response Payload</h2>
-        <div class="is-helpful3">
-            <pre class="is-help">{{ responsePayload | json }}</pre>
+        <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist" style="background-color: 32AEB1">
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-example-response-tab" data-bs-toggle="pill" data-bs-target="#pills-example-response" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Schema</button>
+            </li>
+            <li class="nav-item" role="presentation" >
+            <button class="nav-link" id="pills-schema-response-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-response" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" >Example</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent2">
+            <div class="tab-pane fade show active" id="pills-example-response" role="tabpanel" aria-labelledby="pills-example-response-tab">
+
+                    <div class="is-helpful3">
+                        <pre class="is-help">{{ responsePayload | json }}</pre>
+                    </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-schema-response" role="tabpanel" aria-labelledby="pills-schema-response-tab">                
+                Response Example Not Implemented 
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>                 
+            </div>       
         </div>
     </div>
+
     <br>
+    
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayloadDetails)">
         <h2 style="font-weight: bold;">Response Payload Details </h2>
         <db-angular-tree-grid  (rowselect)="expandAll3($event)" #angularGrid3 [data]="data3" [configs]="configs3"></db-angular-tree-grid>

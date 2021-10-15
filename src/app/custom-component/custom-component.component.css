@@ -64,6 +64,12 @@ a:-webkit-any-link {
     border-left: none!important;
     border-radius: 4px;
 } */
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #32AEB1;
+}
+
+
+
 .callout {
     padding: 10px;
     /* margin: 0px 20px; */
