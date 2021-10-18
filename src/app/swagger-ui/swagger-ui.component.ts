@@ -1,8 +1,10 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../app.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { CustomComponentComponent } from '../custom-component/custom-component.component'
+import { MatSidenavContainer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 declare const SwaggerUIBundle: any;
 
 
@@ -18,10 +20,14 @@ interface MenuNode {
   templateUrl: './swagger-ui.component.html',
   styleUrls: ['./swagger-ui.component.css']
 })
-export class SwaggerUiComponent implements OnInit {
+export class SwaggerUiComponent implements OnInit{
 
   
-  title = '';
+  title = 'Netmeds Documentations';
+
+  currentUser : any;
+
+  @ViewChild(CustomComponentComponent) customReference : CustomComponentComponent | undefined;
 
   uiControl = {
     toogleSideBar: true
@@ -32,25 +38,15 @@ export class SwaggerUiComponent implements OnInit {
   mainMenuData: any = []
 
   editor : any
-  constructor(private appService: AppService, private customComponentComponent: CustomComponentComponent) {
+  constructor(private appService: AppService, 
+    private route: Router) {
     this.refreshMenu();
   }
 
   ngOnInit(): void {
-    // this.editor = SwaggerUIBundle({
-    //   dom_id: '#swagger-ui',
-    //   layout: 'BaseLayout',
-    //   presets: [
-    //     SwaggerUIBundle.presets.apis,
-    //     SwaggerUIBundle.SwaggerUIStandalonePreset
-    //   ],
-    //   //to inject custom components
-    //   // plugins: [CustomComponentComponent],
-    //   // Layout: "./custom-component.component.html"
-    //   // url: 'https://petstore.swagger.io/v2/swagger.json',
-    // });
+    
   }
-
+  
   hasChild = (_: number, node: MenuNode) => !!node.childs && node.childs.length > 0; // !! = ?
 
 
@@ -80,18 +76,29 @@ export class SwaggerUiComponent implements OnInit {
 
   refreshMenu() {
     this.appService.getAllMenu().subscribe(async data => {
-      console.log(data);
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
-    //   await this.loadEditorSpec(null)
+      let user = localStorage.getItem("user");
+      
+      console.log("User = " + user)
+      if(localStorage.length == 0){
+        this.route.navigate(['/login']);
+      }else{
+
+        this.currentUser = JSON.parse(user == null ? " ": user);
+      }
     })
   }
-  
-    renderData: any;
-    renderMethod(node: any) {
-      console.log(node);
-      this.renderData = node;
-      this.customComponentComponent.methodTitle = node.description;
-    //   console.log(node.description);
-    }
+
+  renderData : any;
+  handleRenderData(node : any){
+    console.log(node);
+    this.renderData = node;
+    this.customReference?.renderMethodData(node);
+  }
+
+  handleLogout(){
+    localStorage.removeItem("user");
+    this.route.navigate(['/login']);
+  }
 }

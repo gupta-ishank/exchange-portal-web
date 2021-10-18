@@ -1,86 +1,106 @@
 <div class="dev-container">
   <mat-toolbar class="nav-color">
-    <button mat-icon-button class="example-icon" (click)="uiControl.toogleSideBar = !uiControl.toogleSideBar">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span class="header-color">{{title}}</span>
+    <div class="nav-title">
+      <button mat-icon-button class="example-icon" (click)="uiControl.toogleSideBar = !uiControl.toogleSideBar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span style="cursor: pointer;"  class= "header-color" (click) = "handleRenderData(null)" >{{title}}</span>
+  
+    </div>
+    <div class="user-ui">
+      <p>{{currentUser?.userName}}</p>
+      <span class="material-icons">
+        account_circle</span>
+        <p (click)="handleLogout()">logout</p>
+    </div>
+    
+    
   </mat-toolbar>
-  <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" [opened] = "uiControl.toogleSideBar" >
-      <div class="flex-shrink-0 p-3 bg-white" style=" width: 280px; border: 1px; overflow: hidden; overflow-x: hidden;">
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-          
-          <mat-tree-node *matTreeNodeDef="let node" style="cursor: pointer;">
-            <span>
-              <mat-icon class="material-icons" *ngIf="node.type == 1">
-                {{'folder'}}
-              </mat-icon>
-              <!-- <mat-icon class="material-icons" *ngIf="node.type != 1">
-                description  
-              </mat-icon> -->
-              <!-- <p *ngIf="node.type == 0">
-                {{node.name}}
-              </p>   -->
-              <div (click) = "renderMethod(node)"  class="api-content" *ngIf="node.name == 'GET'"> 
-                <div><button class="btn btn-primary" style="background-color: #61AFFE; ">{{node.name}}</button></div>
-                <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.path">{{node.path}}</div>
-                  <div class="api-content-description" [title]="node.description">{{node.description}}</div>
-                </div>
-              </div>
-              <div (click) = "renderMethod(node)" class="api-content" *ngIf="node.name == 'POST'">
-                <div><button class="btn btn-primary" style="background-color: #49CC90;">{{node.name}}</button></div>
-                <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.path">{{node.path}}</div>
-                  <div class="api-content-description" [title]="node.description">{{node.description}}</div>
-                </div>
-              </div>
-              <div (click) = "renderMethod(node)" class="api-content" *ngIf="node.name == 'PUT'">
-                <div><button class="btn btn-primary" style="background-color: #FCA130; ">{{node.name}}</button></div>
-                <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.path">{{node.path}}</div>
-                  <div class="api-content-description" [title]="node.description">{{node.description}}</div>
-                </div>
-              </div>
-              <div (click) = "renderMethod(node)" class="api-content" *ngIf="node.name == 'DELETE'">
-                <div><button class="btn btn-primary" style="background-color: #F93E3E; ">{{node.name}}</button></div>
-                <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.route">{{node.path}}</div>
-                  <div class="api-content-description" [title]="node.description">{{node.description}}</div>
-                </div>
-              </div>
-            </span>
-          </mat-tree-node>  // Which array is travelling....
+  <mat-drawer-container class="example-container" autosize>
 
-          <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-              <div class="mat-tree-node" style="margin-left: -20px;">
-                <span matTreeNodeToggle >
-                  <mat-icon class="material-icons">
-                    {{treeControl.isExpanded(node) ? 'arrow_drop_down' : 'arrow_right'}}
-                  </mat-icon>
+    <!-- <div> -->
+      <mat-drawer  mode="side" [opened] = "uiControl.toogleSideBar" #drawer 
+      class="example-sidenav" id="drawer">
+
+        <!-- <mat-sidenav class="no-v-scroll" style="width: 320px;"> -->
+          <!-- <mat-toolbar style="flex: 0 0 128px; font-size: medium;">Netmeds Documentations</mat-toolbar> -->
+
+          <div class="flex-shrink-0 p-3 bg-white sidemenuStyle">
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+              
+              <mat-tree-node *matTreeNodeDef="let node" style="cursor: pointer;">
+                <span>
                   <mat-icon class="material-icons" *ngIf="node.type == 1">
-                    {{treeControl.isExpanded(node) ? 'folder_open' : 'folder'}}
+                    {{'folder'}}
                   </mat-icon>
-                  <mat-icon class="material-icons" *ngIf="node.type != 1">
-                    description
-                  </mat-icon>
-                  {{node.name}}
-              </span>
-              </div>
-              <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
-                  role="group">
-                <ng-container matTreeNodeOutlet></ng-container>
-            </div>
-          </mat-nested-tree-node>
-        </mat-tree>
-      </div>
-      
-    </mat-drawer>
+                  <!-- <mat-icon class="material-icons" *ngIf="node.type != 1">
+                    description  
+                  </mat-icon> -->
+                  <p *ngIf="node.type == 1"  >
+                    {{node.name}}
+                  </p>  
+                  <div (click)="handleRenderData(node)" class="api-content" *ngIf="node.name == 'GET'">  
+                    <div><button class="btn btn-primary" style="background-color: #61AFFE; ">{{node.name}}</button></div>
+                    <div class="api-content-details">
+                      <div class="api-content-path" [title]="node.path">{{node.path}}</div>
+                      <div class="api-content-description" [title]="node.description">{{node.description}}</div>
+                    </div>
+                  </div>
+                  <div (click)="handleRenderData(node)" class="api-content" *ngIf="node.name == 'POST'">
+                    <div><button class="btn btn-primary" style="background-color: #49CC90;">{{node.name}}</button></div>
+                    <div class="api-content-details">
+                      <div class="api-content-path" [title]="node.path">{{node.path}}</div>
+                      <div class="api-content-description" [title]="node.description">{{node.description}}</div>
+                    </div>
+                  </div>
+                  <div (click)="handleRenderData(node)" class="api-content" *ngIf="node.name == 'PUT'">
+                    <div><button class="btn btn-primary" style="background-color: #FCA130; ">{{node.name}}</button></div>
+                    <div class="api-content-details">
+                      <div class="api-content-path" [title]="node.path">{{node.path}}</div>
+                      <div class="api-content-description" [title]="node.description">{{node.description}}</div>
+                    </div>
+                  </div>
+                  <div (click)="handleRenderData(node)" class="api-content" *ngIf="node.name == 'DELETE'">
+                    <div><button class="btn btn-primary" style="background-color: #F93E3E; ">{{node.name}}</button></div>
+                    <div class="api-content-details">
+                      <div class="api-content-path" [title]="node.path">{{node.path}}</div>
+                      <div class="api-content-description" [title]="node.description">{{node.description}}</div>
+                    </div>
+                  </div>
+                </span>
+              </mat-tree-node>  // Which array is travelling....
+
+              <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                  <div class="mat-tree-node" style="margin-left: -20px;">
+                    <span matTreeNodeToggle >
+                      <mat-icon class="material-icons">
+                        {{treeControl.isExpanded(node) ? 'arrow_drop_down' : 'arrow_right'}}
+                      </mat-icon>
+                      <mat-icon class="material-icons" *ngIf="node.type == 1">
+                        {{treeControl.isExpanded(node) ? 'folder_open' : 'folder'}}
+                      </mat-icon>
+                      <mat-icon class="material-icons" style="font-size: 20px;" *ngIf="node.type != 1">
+                        description
+                      </mat-icon>
+                      {{node.name}}
+                  </span>
+                  </div>
+                  <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+                      role="group">
+                    <ng-container matTreeNodeOutlet></ng-container>
+                </div>
+              </mat-nested-tree-node>
+            </mat-tree>
+          </div>
+        <!-- </mat-sidenav> -->
+      </mat-drawer>
+    <!-- </div> -->
   
     <mat-drawer-content>
         <!-- <div id="swagger-ui"> </div> -->
-        <div style="margin: 20px;">
-          <app-custom-component></app-custom-component>
+        <!-- <div *ngIf="childMessage == null" style="color: red; height: 100vh;"></div> -->
+        <div >
+          <app-custom-component #customReference ></app-custom-component>
         </div>
     </mat-drawer-content>
   

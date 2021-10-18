@@ -1,20 +1,60 @@
 body{
   overflow-x: hidden;
 }
+.sidemenuStyle{
+  width: 280px; 
+  border: 1px; 
+  overflow-x: hidden;
+}
 
-::-webkit-scrollbar {
-  display: none;
+
+
+/* width */
+.dev-container ::-webkit-scrollbar{
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(167, 167, 175); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #32aeb1; 
+}
+
+.header-color {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
 }
 
 .nav-color{
-  background-color: black;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  background-color:#32aeb1;
+  /* background: #32aeb1; */
   color: whitesmoke;
 }
-
+.p {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 .dev-container{
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
   height: 100vh;
   width: 100%;
-}  
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+  
+} 
 
 #swagger-ui{
   height: 87vh;
@@ -41,6 +81,7 @@ body{
 
 .mat-tree-node{
   cursor: pointer;
+  min-height: 15px;
 }
 
 .mat-tree-node span{
@@ -82,45 +123,7 @@ body{
   flex-direction: column;
 }
 
-/* .api-content-path {
-  position: relative;
-} */
-/* .api-content-description {
-  position: relative;
-} */
-/* .api-content-path span{
-  position: absolute;
-  display: inline-block;
-  visibility: hidden;
-  right: 0;
-  left: 30px;
-  bottom: 15px;
-}
-.api-content-description span{
-  position: absolute;
-  display: inline-block;
-  visibility: hidden;
-  right: 0;
-  bottom: 10px;
-  top: 20px;
-} */
 
-/* .api-content-path:hover span{
-  background-color: lightblue;
-  border-radius: 3px;
-  padding: 1px 3px;
-  border-bottom:1px dotted #666;
-  visibility: visible;
-  z-index: 999999;
-}
-.api-content-description:hover span{
-  background-color: lightcoral;
-  border-radius: 3px;
-  padding: 1px 3px;
-  border-bottom:1px dotted #666;
-  visibility: visible;
-  z-index: 999999;
-} */
 
 .api-content-description{
   width: 150px; 
@@ -130,3 +133,41 @@ body{
   font-size: 11px;
 }
 
+.example-container{
+  height: 90vh;
+}
+::ng-deep .mat-drawer-inner-container {
+  height: unset !important;
+}
+
+.nav-color .nav-title{
+  display: flex;
+  flex: 1;
+}
+.nav-color div span{
+  margin-top: 5px;
+}
+/* .nav-color p {
+  font-size: small;
+  margin-right: 30px;
+  margin-top: -10px;
+}
+.nav-color .material-icons{
+  padding: 10px;
+  margin-top: 10px;
+} */
+.user-ui {
+  display: flex;
+  margin-top: 10px;
+}
+.user-ui p{
+  font-size: medium;
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.mat-icon {
+  height: unset;
+  width: unset;
+}
