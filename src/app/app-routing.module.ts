@@ -5,9 +5,9 @@ import { SignupComponent } from './signup/signup.component';
 import { SwaggerUiComponent } from './swagger-ui/swagger-ui.component';
 
 const routes: Routes = [
-    {path: 'swagger', component: SwaggerUiComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'signup', component: SignupComponent}
+  {path: 'swagger', component: SwaggerUiComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({

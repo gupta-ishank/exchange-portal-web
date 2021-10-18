@@ -18,34 +18,34 @@
               <!-- <mat-icon class="material-icons" *ngIf="node.type != 1">
                 description  
               </mat-icon> -->
-              <p *ngIf="node.type == 1">
+              <!-- <p *ngIf="node.type == 0">
                 {{node.name}}
-              </p>  
-              <div class="api-content" *ngIf="node.name == 'get'">  
+              </p>   -->
+              <div (click) = "renderMethod(node)"  class="api-content" *ngIf="node.name == 'GET'"> 
                 <div><button class="btn btn-primary" style="background-color: #61AFFE; ">{{node.name}}</button></div>
                 <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.route">{{node.route}}</div>
+                  <div class="api-content-path" [title]="node.path">{{node.path}}</div>
                   <div class="api-content-description" [title]="node.description">{{node.description}}</div>
                 </div>
               </div>
-              <div class="api-content" *ngIf="node.name == 'post'">
+              <div (click) = "renderMethod(node)" class="api-content" *ngIf="node.name == 'POST'">
                 <div><button class="btn btn-primary" style="background-color: #49CC90;">{{node.name}}</button></div>
                 <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.route">{{node.route}}</div>
+                  <div class="api-content-path" [title]="node.path">{{node.path}}</div>
                   <div class="api-content-description" [title]="node.description">{{node.description}}</div>
                 </div>
               </div>
-              <div class="api-content" *ngIf="node.name == 'put'">
+              <div (click) = "renderMethod(node)" class="api-content" *ngIf="node.name == 'PUT'">
                 <div><button class="btn btn-primary" style="background-color: #FCA130; ">{{node.name}}</button></div>
                 <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.route">{{node.route}}</div>
+                  <div class="api-content-path" [title]="node.path">{{node.path}}</div>
                   <div class="api-content-description" [title]="node.description">{{node.description}}</div>
                 </div>
               </div>
-              <div class="api-content" *ngIf="node.name == 'delete'">
+              <div (click) = "renderMethod(node)" class="api-content" *ngIf="node.name == 'DELETE'">
                 <div><button class="btn btn-primary" style="background-color: #F93E3E; ">{{node.name}}</button></div>
                 <div class="api-content-details">
-                  <div class="api-content-path" [title]="node.route">{{node.route}}</div>
+                  <div class="api-content-path" [title]="node.route">{{node.path}}</div>
                   <div class="api-content-description" [title]="node.description">{{node.description}}</div>
                 </div>
               </div>
@@ -53,7 +53,7 @@
           </mat-tree-node>  // Which array is travelling....
 
           <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-              <div class="mat-tree-node" (dblclick)="onClick(node)" style="margin-left: -20px;">
+              <div class="mat-tree-node" style="margin-left: -20px;">
                 <span matTreeNodeToggle >
                   <mat-icon class="material-icons">
                     {{treeControl.isExpanded(node) ? 'arrow_drop_down' : 'arrow_right'}}
@@ -86,3 +86,4 @@
   
   </mat-drawer-container>
 </div>
+<!-- <router-outlet></router-outlet> -->

@@ -1,5 +1,9 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+// import { SwaggerUiComponent } from '../swagger-ui/swagger-ui.component';
 
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-custom-component',
@@ -8,7 +12,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 })
 export class CustomComponentComponent implements OnInit {
   content: any= [];
-  methodTitle = "This is title";
+  methodTitle = "";
   methodDescription = "This is description of method";
   columns=["type", "header", "body"];
   tableData= [
@@ -30,16 +34,18 @@ export class CustomComponentComponent implements OnInit {
   ]
 
   setData(d: any, key: String) {
-    let k = "'" + key + "'"
-    console.log(d)
-    console.log(k)
-    console.log(d[k])
+    // let k = "'" + key + "'"
+    // console.log(d)
+    // console.log(k)
+    // console.log(d[k])
     return d.key;
   }
 
   tableDataKeys = Object.keys(this.tableData[0])
   
   constructor() { 
+    // this.methodTitle = swaggerUiComponent.renderData.description;
+    // this.methodDescription = swaggerUiComponent.renderData.subDescription;
     this.content = [
       {
         "type":"1",
@@ -54,7 +60,9 @@ export class CustomComponentComponent implements OnInit {
         "type":"3",
         "imgurl":".././basepath/url",
       }
-    ];
+    ]
+
+    
   }
 
   ngOnInit(): void {
