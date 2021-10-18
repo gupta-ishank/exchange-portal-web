@@ -18,10 +18,11 @@
  <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
 </head>
 <body>
-<div class="container">
- <div class="d-flex justify-content-center h-100">
+<div class="container py-5 h-100">
+ <div class="d-flex justify-content-center h-100 row d-flex align-items-center">
   <div class="card">
-   <div class="card-header">
+   <div class="card-header" style="text-align: center;">
+    <h2 style="color: antiquewhite;">Netmeds Documentations</h2> 
     <h3>Sign In</h3>
 
     
@@ -31,47 +32,50 @@
 
 
    <div class="card-body">
+        <!-- <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1"> -->
 
-    <div class="d-flex justify-content-center" style="flex-direction: column;">
-        <div>
-            <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998;" href="#!"  role="button">
-                <i class="fab fa-facebook-f me-2" ></i>Sign in with Facebook
-            </a> 
+            <div class="d-flex justify-content-center" style="flex-direction: column;">
+                <div>
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998;" href="#!"  role="button">
+                        <i class="fab fa-facebook-f me-2" ></i>Sign in with Facebook
+                    </a> 
+                </div>
+
+            
+                <div>
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee; " href="#!" role="button">
+                        <i class="fab fa-twitter me-2" ></i>Sign in with Twitter</a>
+                </div>
+                
+
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center fw-bold mx-3 mb-0" style="color: aliceblue; text-align: center;">OR</p> 
+                </div> 
+            <!-- </div> -->
         </div>
 
-       
-        <div>
-            <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee; " href="#!" role="button">
-                <i class="fab fa-twitter me-2" ></i>Sign in with Twitter</a>
+
+        <form >
+        <div class="input-group form-group">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
         </div>
+        <input type="text" class="form-control" name="userName" placeholder="username" [(ngModel)] = "user.userName" required>
         
-
-        <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0" style="color: aliceblue; text-align: center;">OR</p> 
-        </div> 
-    </div>
-
-    <form >
-     <div class="input-group form-group">
-      <div class="input-group-prepend">
-       <span class="input-group-text"><i class="fas fa-user"></i></span>
-      </div>
-      <input type="text" class="form-control" name="userName" placeholder="username" [(ngModel)] = "user.userName" required>
-      
-     </div>
-     <div class="input-group form-group">
-      <div class="input-group-prepend">
-       <span class="input-group-text"><i class="fas fa-key"></i></span>
-      </div>
-      <input type="password" class="form-control" placeholder="password" name="password" [(ngModel)] = "user.password" required>
-     </div>
-     <div class="row align-items-center remember">
-      <input type="checkbox">Remember Me
-     </div>
-     <div class="form-group">
-      <button value="Login" class="btn float-right login_btn" (click)="handleLogin()">Login</button>
-     </div>
-    </form>
+        </div>
+        <div class="input-group form-group">
+        <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-key"></i></span>
+        </div>
+        <input type="password" class="form-control" placeholder="password" name="password" [(ngModel)] = "user.password" required>
+        </div>
+        <div class="row align-items-center remember">
+        <input type="checkbox">Remember Me
+        </div>
+        <div class="form-group">
+        <button value="Login" class="btn float-right login_btn" (click)="handleLogin()">Login</button>
+        </div>
+        </form>
    </div>
     <div class="card-footer">
       <p>{{statusMessage}}</p>
