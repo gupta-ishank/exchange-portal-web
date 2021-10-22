@@ -71,7 +71,7 @@
               </mat-tree-node>  // Which array is travelling....
 
               <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-                  <div class="mat-tree-node" (dblclick)="onClick(node)" style="margin-left: -20px;">
+                  <div class="mat-tree-node" style="margin-left: -20px;">
                     <span matTreeNodeToggle >
                       <mat-icon class="material-icons">
                         {{treeControl.isExpanded(node) ? 'arrow_drop_down' : 'arrow_right'}}
@@ -106,3 +106,4 @@
   
   </mat-drawer-container>
 </div>
+<!-- <router-outlet></router-outlet> -->

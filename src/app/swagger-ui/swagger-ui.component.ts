@@ -6,11 +6,15 @@ import { CustomComponentComponent } from '../custom-component/custom-component.c
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 declare const SwaggerUIBundle: any;
+
+
+
 interface MenuNode {
   name: string;
   type: number;
   childs?: MenuNode[];
 }
+
 @Component({
   selector: 'app-swagger-ui',
   templateUrl: './swagger-ui.component.html',
