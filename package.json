@@ -23,6 +23,7 @@
     "angular-tree-grid": "^3.0.1",
     "bootstrap": "^5.1.2",
     "material-ui": "^0.20.2",
+    "ngx-json-viewer": "^3.0.2",
     "rxjs": "~6.6.0",
     "swagger-ui-dist": "^3.52.3",
     "tslib": "^2.3.0",

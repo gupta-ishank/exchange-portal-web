@@ -24,7 +24,8 @@ export class CustomComponentComponent implements OnInit{
   requestPayload: any;
   responsePayload: any;
   requestPayloadArray: any = [];
-  responsePayloadArray: any = [];
+  successPayloadArray: any = [];
+  failurePayloadArray: any = [];
   
 
   constructor() { 
@@ -36,7 +37,8 @@ export class CustomComponentComponent implements OnInit{
     { id: 1, name: 'Endpoint:', details: "", parent: 0},
     { id: 2, name: 'Request Type:', details: "", parent: 0},
     { id: 3, name: 'Scheme:', details: "HTTPS", parent: 0},
-    { id: 4, name: 'Header (Content-Type):', details: "application/json", parent: 0}
+    { id: 4, name: 'Header (Content-Type):', details: "application/json", parent: 0},
+    { id: 5, name: 'Header (Authorization):', details: "", parent: 0}
   ];
 
   configs: any = {
@@ -120,7 +122,7 @@ export class CustomComponentComponent implements OnInit{
 
 
 
-  //for response payload details
+  //for success payload details
   @ViewChild('angularGrid3') angularGrid3: AngularTreeGridComponent | undefined;
   data3: any =[];
 
@@ -142,16 +144,6 @@ export class CustomComponentComponent implements OnInit{
         name: 'Type',
         header: 'Type',
         width: '200px'
-      },
-      {
-        name: 'Mendate',
-        header: 'Mandatory',
-        width: '200px'
-      },
-      {
-        name: 'Description',
-        header: 'Description',
-        width: '200px'
       }
     ]
   };
@@ -172,6 +164,47 @@ export class CustomComponentComponent implements OnInit{
     }
   }
 
+  
+  @ViewChild('angularGrid4') angularGrid4: AngularTreeGridComponent | undefined;
+  data4: any =[];
+
+  configs4: any = {
+    id_field: 'Level',
+    parent_id_field: 'parentId',
+    parent_display_field: 'parameter',
+    css: { // Optional
+      expand_class: 'fa fa-caret-right',
+      collapse_class: 'fa fa-caret-down',
+    },
+    columns: [
+      {
+        name: 'parameter',
+        header: 'Parameter',
+        width: '200px'
+      },
+      {
+        name: 'Type',
+        header: 'Type',
+        width: '200px'
+      }
+    ]
+  };
+
+  collapseAll4() {
+    if(this.angularGrid4)
+      this.angularGrid4?.collapseAll();
+  }
+
+  expandAll4($event :any) {
+    console.log($event?.data?.Level)
+    let id = $event?.data?.Level;
+    console.log("here");
+    if(this.angularGrid4){
+      console.log(id);
+      this.angularGrid4?.expandRow(id);
+    }
+  }
+
   ngOnInit(): void {
   }
 
@@ -183,15 +216,19 @@ export class CustomComponentComponent implements OnInit{
     // this.endpoint = this.childMessage?.path;
     // this.requestType = this.childMessage?.name;
     this.requestPayloadArray = this.childMessage?.schema?.requestPayloadDetails;
-    this.responsePayloadArray = this.childMessage?.schema?.responsePayloadDetails;
+    this.successPayloadArray = this.childMessage?.schema?.responsePayload?.sucessDetails;
+    this.failurePayloadArray = this.childMessage?.schema?.responsePayload?.failureDetails;
     this.methodTitle = methodData?.description;
     this.methodDescription = methodData?.subDescription;
     this.requestPayload = methodData?.schema?.requestPayload;
     this.responsePayload = methodData?.schema?.responsePayload;
     this.data[0].details = methodData?.path;
     this.data[1].details = methodData?.name;
+    this.data[4].details = methodData?.schema?.security == [] ? "" : Object.keys(methodData?.schema?.security[0]);
+    console.log(methodData?.schema?.security);
     this.data2 = methodData?.schema?.requestPayloadDetails;
-    this.data3 = methodData?.schema?.responsePayloadDetails;
+    this.data3 = methodData?.schema?.responsePayload?.successDetails;
+    this.data4 = methodData?.schema?.responsePayload?.failureDetails;
     console.log(" heloo" +this.data3)
   }
 

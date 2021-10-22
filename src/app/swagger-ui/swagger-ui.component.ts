@@ -68,7 +68,7 @@ export class SwaggerUiComponent implements OnInit{
       await this.loadEditorSpec(node)
     }
     event?.stopPropagation()
- }
+  }
 
   refreshMenu() {
     this.appService.getAllMenu().subscribe(async data => {

@@ -35,13 +35,15 @@ a:-webkit-any-link {
 .is-helpful3 {
     /* border-left: 8px solid #1976d2; */
     background-color: #0d1014;
+    /* background-color: white; */
     /* border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px; */
     /* border-radius: 8px; */
     margin-top: 1%;
     margin-right: 1%;
     margin-left: 1%;
-    background: rgb(40, 44, 52);
+    /* background: rgb(40, 44, 52); */
+    background: rgba(25,118,210,.05);
     color: rgb(255, 255, 255);
     border-radius: 10px;
     overflow: auto;

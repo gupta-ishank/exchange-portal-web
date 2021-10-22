@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CustomComponentComponent } from './custom-component/custom-component.component';
 import {AngularTreeGridModule} from 'angular-tree-grid';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {AngularTreeGridModule} from 'angular-tree-grid';
     DemoMaterialModule,
     FormsModule,
     BrowserAnimationsModule,
-    AngularTreeGridModule
+    AngularTreeGridModule,
+    NgxJsonViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
