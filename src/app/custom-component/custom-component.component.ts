@@ -29,21 +29,7 @@ export class CustomComponentComponent implements OnInit{
   failurePayloadArray: any = [];
   validationPayloadArray: any = [];
   
-  // data4: any = [
-  //   {
-  //     "enum":"John",
-  //     "minLength":30,
-  //     "maxLength":null,
-  //     "pattern": null,
-  //   },
-  //   {
-  //     "enum":"John",
-  //     "minLength":30,
-  //     "maxLength":null,
-  //     "pattern": null,
-  //   },
-
-  // ];
+  
 
   constructor() { 
   }
@@ -199,12 +185,27 @@ export class CustomComponentComponent implements OnInit{
       {
         name: 'parameter',
         header: 'Parameter',
-        width: '200px'
+        width: '200px',
       },
       {
         name: 'Type',
         header: 'Type',
         width: '200px'
+      },
+      {
+        name: 'parameterType',
+        header: 'Parameter Type',
+        width: '200px'
+      },
+      {
+        name: 'Mendate',
+        header: 'Mandatory',
+        width: '200px'
+      },
+      {
+        name: 'Description',
+        header: 'Description',
+        width: '300px'
       }
     ]
   };
@@ -281,6 +282,7 @@ export class CustomComponentComponent implements OnInit{
     }
   }
 
+  
   ngOnInit(): void {
   }
 
@@ -307,21 +309,14 @@ export class CustomComponentComponent implements OnInit{
     this.data[0].details = methodData?.path;
     this.data[1].details = methodData?.name;
     this.data[4].details = methodData?.schema?.security == [] ? "" : Object.keys(methodData?.schema?.security[0]);
-    // console.log(methodData?.schema?.responsePayload);
     this.data2 = methodData?.schema?.requestPayloadDetails;
     this.data3 = methodData?.schema?.responsePayload?.successDetails;
     this.data4 = methodData?.schema?.responsePayload?.failureDetails;
     this.data5 = methodData?.schema?.requestValidation;
-
-    // this.data5 = methodData?.schema?.validationPayload;
-    // console.log("Validation Data: " +methodData?.schema?.validation);
   }
 
 
   emptyCheck(node: any){
-
-    // console.log( "pup sala" + node );
-    // return true;
     return node != null && Object.keys(node).length > 0;
   }
 

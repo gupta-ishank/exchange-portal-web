@@ -3,3 +3,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+tr th div {
+    background-color: rgba(25,118,210,.2) !important;
+}

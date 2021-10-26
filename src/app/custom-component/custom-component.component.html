@@ -23,7 +23,45 @@
         <h2 style="font-weight: bold;">Basic Information</h2>
         <db-angular-tree-grid  #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
     </div>
-    
+
+    <br> 
+    <div *ngIf="emptyCheck(childMessage?.schema?.parameterPayload)" class="payload-div">
+        <h2 style="font-weight: bold;">Parameter Payload</h2>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active" nav-link-color="green" id="pills-example-parameter-tab" data-bs-toggle="pill" data-bs-target="#pills-example-parameter" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Schema</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-schema-parameter-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-parameter" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"
+            *ngIf="childMessage?.schema?.parameterPayloadExample != ''"
+            >Example</button>
+            </li>
+        </ul>   
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-example-parameter" role="tabpanel" aria-labelledby="pills-example-parameter-tab">
+
+                    <div class="is-helpful3">
+                        <ngx-json-viewer [json]="childMessage?.schema?.parameterPayload"></ngx-json-viewer>
+                    </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-schema-parameter" role="tabpanel" aria-labelledby="pills-schema-parameter-tab">              
+                <div class="is-helpful3" >
+                    <ngx-json-viewer [json]="childMessage?.schema?.parameterPayloadExample"></ngx-json-viewer>
+                </div>         
+            </div>      
+        </div>
+    </div>
+    <br>
+    <div *ngIf="emptyCheck(childMessage?.schema?.parameterPayloadDetails)">
+        <h2 style="font-weight: bold;">Parameter Payload Details</h2>
+        <db-angular-tree-grid  (rowselect)="expandAll2($event)" #angularGrid2 [data]="childMessage?.schema?.parameterPayloadDetails" [configs]="configs4"></db-angular-tree-grid>
+    </div>
+    <br>
+    <div *ngIf="emptyCheck(childMessage?.schema?.parameterValidation)">
+        <h2 style="font-weight: bold;">Parameter Validations</h2>
+        <db-angular-tree-grid  (rowselect)="expandAll5($event)" #angularGrid5 [data]="childMessage?.schema?.parameterValidation" [configs]="configs5"></db-angular-tree-grid>
+    </div>
     
     <br> 
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayload)" class="payload-div">
@@ -33,7 +71,9 @@
             <button class="nav-link active" nav-link-color="green" id="pills-example-request-tab" data-bs-toggle="pill" data-bs-target="#pills-example-request" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Schema</button>
             </li>
             <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-schema-request-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-request" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Example</button>
+            <button class="nav-link" id="pills-schema-request-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-request" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"
+            *ngIf="childMessage?.schema?.requestPayloadExample != ''"
+            >Example</button>
             </li>
         </ul>   
         <div class="tab-content" id="pills-tabContent">
@@ -46,7 +86,7 @@
 
             </div>
             <div class="tab-pane fade" id="pills-schema-request" role="tabpanel" aria-labelledby="pills-schema-request-tab">              
-                <div class="is-helpful3" *ngIf="childMessage?.schema?.requestPayloadExample != ''">
+                <div class="is-helpful3" >
                     <!-- <pre class="is-help">{{ requestPayload | json }}</pre> -->
                     <ngx-json-viewer [json]="childMessage?.schema?.requestPayloadExample"></ngx-json-viewer>
                 </div>         
@@ -76,7 +116,7 @@
             <button class="nav-link active" id="pills-example-response-tab" data-bs-toggle="pill" data-bs-target="#pills-example-response" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Schema</button>
             </li>
             <li class="nav-item" role="presentation" >
-            <button class="nav-link" id="pills-schema-response-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-response" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" >Example</button>
+            <button class="nav-link" id="pills-schema-response-tab" data-bs-toggle="pill" data-bs-target="#pills-schema-response" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" *ngIf="childMessage?.schema?.responsePayloadExample != ''">Example</button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent2">
@@ -89,7 +129,7 @@
 
             </div>
             <div class="tab-pane fade" id="pills-schema-response" role="tabpanel" aria-labelledby="pills-schema-response-tab">                
-                <div class="is-helpful3" *ngIf="childMessage?.schema?.responsePayloadExample != ''">
+                <div class="is-helpful3" >
                     <!-- <pre class="is-help">{{ responsePayload | json }}</pre> -->
                     <ngx-json-viewer [json]="childMessage?.schema?.responsePayloadExample"></ngx-json-viewer>
                 </div>                 
@@ -107,7 +147,7 @@
 
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.failureDetails)">
         <h2 style="font-weight: bold;">Failure Payload Details </h2>
-        <db-angular-tree-grid  (rowselect)="expandAll4($event)" #angularGrid4 [data]="data4" [configs]="configs4"></db-angular-tree-grid>
+        <db-angular-tree-grid  (rowselect)="expandAll4($event)" #angularGrid4 [data]="data4" [configs]="configs3"></db-angular-tree-grid>
     </div>
 
     <footer style=" color: red; height: 150px;">

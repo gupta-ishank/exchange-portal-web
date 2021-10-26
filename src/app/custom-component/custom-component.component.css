@@ -131,3 +131,10 @@ img{
     height: 70%;
     opacity: 0.3;
 }
+::ng-deep .e-headercell{
+    background-color: #0d1014 !important;
+}
+
+th{
+    background-color: #0d1014 !important;
+}
