@@ -23,10 +23,27 @@ export class CustomComponentComponent implements OnInit{
   tip= "";
   requestPayload: any;
   responsePayload: any;
+  validationPayload: any;
   requestPayloadArray: any = [];
   successPayloadArray: any = [];
   failurePayloadArray: any = [];
+  validationPayloadArray: any = [];
   
+  // data4: any = [
+  //   {
+  //     "enum":"John",
+  //     "minLength":30,
+  //     "maxLength":null,
+  //     "pattern": null,
+  //   },
+  //   {
+  //     "enum":"John",
+  //     "minLength":30,
+  //     "maxLength":null,
+  //     "pattern": null,
+  //   },
+
+  // ];
 
   constructor() { 
   }
@@ -41,6 +58,7 @@ export class CustomComponentComponent implements OnInit{
     { id: 5, name: 'Header (Authorization):', details: "", parent: 0}
   ];
 
+  // Basic Information
   configs: any = {
     id_field: 'id',
     parent_id_field: 'parent',
@@ -59,7 +77,7 @@ export class CustomComponentComponent implements OnInit{
         name: 'details',
         header: 'Details',
         width: '200px'
-      }
+      },
     ]
   };
 
@@ -144,7 +162,7 @@ export class CustomComponentComponent implements OnInit{
         name: 'Type',
         header: 'Type',
         width: '200px'
-      }
+      },
     ]
   };
 
@@ -153,6 +171,7 @@ export class CustomComponentComponent implements OnInit{
       this.angularGrid3?.collapseAll();
   }
 
+  // success Payload Details
   expandAll3($event :any) {
     console.log($event?.data?.Level)
     let id = $event?.data?.Level;
@@ -205,6 +224,63 @@ export class CustomComponentComponent implements OnInit{
     }
   }
 
+  //Validation
+  @ViewChild('angularGrid5') angularGrid5: AngularTreeGridComponent | undefined;
+  data5: any = [];
+  configs5: any = {
+    id_field: 'Level',
+    parent_id_field: 'parentId',
+    parent_display_field: 'parameter',
+    css: { // Optional
+      expand_class: 'fa fa-caret-right',
+      collapse_class: 'fa fa-caret-down',
+    },
+    columns: [
+      {
+        name: 'parameter',
+        header: 'Parameter',
+        width: '100px'
+      },
+      {
+        name: 'enum',
+        header: 'Enum',
+        width: '200px'
+      },
+      {
+        name: 'maxLength',
+        header: 'maxLength',
+        width: '60px'
+      },
+      {
+        name: 'minLength',
+        header: 'minLength',
+        width: '60px'
+      },
+      {
+        name: 'pattern',
+        header: 'Pattern',
+        width: '400px'
+      },
+    ]
+  };
+
+  collapseAll5() {
+    if(this.angularGrid5)
+      this.angularGrid5?.collapseAll();
+  }
+
+  // Validation
+  expandAll5($event :any) {
+    console.log($event?.data?.Level)
+    let id = $event?.data?.Level;
+    console.log("here");
+    if(this.angularGrid3){
+      console.log(id);
+      this.angularGrid3?.expandRow(id);
+      console.log("here3");
+    }
+  }
+
   ngOnInit(): void {
   }
 
@@ -218,18 +294,27 @@ export class CustomComponentComponent implements OnInit{
     this.requestPayloadArray = this.childMessage?.schema?.requestPayloadDetails;
     this.successPayloadArray = this.childMessage?.schema?.responsePayload?.sucessDetails;
     this.failurePayloadArray = this.childMessage?.schema?.responsePayload?.failureDetails;
+
+    // this.validationPayloadArray = this.childMessage?.schema?.validationPayloadArray;
+    // this.failurePayloadArray = this.childMessage?.schema?.validationPayload?.failureDetails;
+
     this.methodTitle = methodData?.description;
     this.methodDescription = methodData?.subDescription;
     this.requestPayload = methodData?.schema?.requestPayload;
     this.responsePayload = methodData?.schema?.responsePayload;
+    // this.validationPayload = methodData?.schema?.validationPayload;
+    
     this.data[0].details = methodData?.path;
     this.data[1].details = methodData?.name;
     this.data[4].details = methodData?.schema?.security == [] ? "" : Object.keys(methodData?.schema?.security[0]);
-    console.log(methodData?.schema?.security);
+    // console.log(methodData?.schema?.responsePayload);
     this.data2 = methodData?.schema?.requestPayloadDetails;
     this.data3 = methodData?.schema?.responsePayload?.successDetails;
     this.data4 = methodData?.schema?.responsePayload?.failureDetails;
-    console.log(" heloo" +this.data3)
+    this.data5 = methodData?.schema?.requestValidation;
+
+    // this.data5 = methodData?.schema?.validationPayload;
+    // console.log("Validation Data: " +methodData?.schema?.validation);
   }
 
 

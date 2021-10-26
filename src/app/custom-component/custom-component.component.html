@@ -24,6 +24,7 @@
         <db-angular-tree-grid  #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
     </div>
     
+    
     <br> 
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayload)" class="payload-div">
         <h2 style="font-weight: bold;">Request Payload</h2>
@@ -45,8 +46,10 @@
 
             </div>
             <div class="tab-pane fade" id="pills-schema-request" role="tabpanel" aria-labelledby="pills-schema-request-tab">              
-                Request Example Not Implemented
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>          
+                <div class="is-helpful3" *ngIf="childMessage?.schema?.requestPayloadExample != ''">
+                    <!-- <pre class="is-help">{{ requestPayload | json }}</pre> -->
+                    <ngx-json-viewer [json]="childMessage?.schema?.requestPayloadExample"></ngx-json-viewer>
+                </div>         
             </div>      
         </div>
     </div>
@@ -59,6 +62,11 @@
     </div> 
     
 
+    <br>
+    <div *ngIf="emptyCheck(childMessage?.schema?.requestValidation)">
+        <h2 style="font-weight: bold;">Request Validations</h2>
+        <db-angular-tree-grid  (rowselect)="expandAll5($event)" #angularGrid5 [data]="data5" [configs]="configs5"></db-angular-tree-grid>
+    </div>
     <!--Response payload-->
     <br> 
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload)" class="payload-div"> 
@@ -81,9 +89,9 @@
 
             </div>
             <div class="tab-pane fade" id="pills-schema-response" role="tabpanel" aria-labelledby="pills-schema-response-tab">                
-                <div class="is-helpful3">
+                <div class="is-helpful3" *ngIf="childMessage?.schema?.responsePayloadExample != ''">
                     <!-- <pre class="is-help">{{ responsePayload | json }}</pre> -->
-                    <ngx-json-viewer [json]="responsePayload?.successDetails"></ngx-json-viewer>
+                    <ngx-json-viewer [json]="childMessage?.schema?.responsePayloadExample"></ngx-json-viewer>
                 </div>                 
             </div>       
         </div>
@@ -91,10 +99,12 @@
 
     <br>
     
+    <!-- success Payload Details -->
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.successDetails)">
         <h2 style="font-weight: bold;">success Payload Details </h2>
         <db-angular-tree-grid  (rowselect)="expandAll3($event)" #angularGrid3 [data]="data3" [configs]="configs3"></db-angular-tree-grid>
     </div>
+
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.failureDetails)">
         <h2 style="font-weight: bold;">Failure Payload Details </h2>
         <db-angular-tree-grid  (rowselect)="expandAll4($event)" #angularGrid4 [data]="data4" [configs]="configs4"></db-angular-tree-grid>
