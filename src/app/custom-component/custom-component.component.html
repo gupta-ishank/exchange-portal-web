@@ -21,7 +21,7 @@
     <br>
     <div *ngIf="childMessage">
         <h2 style="font-weight: bold;">Basic Information</h2>
-        <db-angular-tree-grid  #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
+        <db-angular-tree-grid #angularGrid [data]="basicTableData" [configs]="basicConfig"></db-angular-tree-grid>
     </div>
 
     <br> 
@@ -55,12 +55,12 @@
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.parameterPayloadDetails)">
         <h2 style="font-weight: bold;">Parameter Payload Details</h2>
-        <db-angular-tree-grid  (rowselect)="expandAll2($event)" #angularGrid2 [data]="childMessage?.schema?.parameterPayloadDetails" [configs]="configs4"></db-angular-tree-grid>
+        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.parameterPayloadDetails" [configs]="parameterConfig"></db-angular-tree-grid>
     </div>
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.parameterValidation)">
         <h2 style="font-weight: bold;">Parameter Validations</h2>
-        <db-angular-tree-grid  (rowselect)="expandAll5($event)" #angularGrid5 [data]="childMessage?.schema?.parameterValidation" [configs]="configs5"></db-angular-tree-grid>
+        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.parameterValidation" [configs]="validationConfig"></db-angular-tree-grid>
     </div>
     
     <br> 
@@ -78,7 +78,6 @@
         </ul>   
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-example-request" role="tabpanel" aria-labelledby="pills-example-request-tab">
-
                     <div class="is-helpful3">
                         <ngx-json-viewer [json]="childMessage?.schema?.requestPayload"></ngx-json-viewer>
                     </div>
@@ -96,14 +95,14 @@
     
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayloadDetails)">
         <h2 style="font-weight: bold;">Request Payload Details </h2>
-        <db-angular-tree-grid  #angularGrid2 [data]="childMessage?.schema?.requestPayloadDetails" [configs]="configs2" ></db-angular-tree-grid>
+        <db-angular-tree-grid  #angularGrid [data]="childMessage?.schema?.requestPayloadDetails" [configs]="requestConfig" ></db-angular-tree-grid>
     </div> 
     
 
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.requestValidation)">
         <h2 style="font-weight: bold;">Request Validations</h2>
-        <db-angular-tree-grid  (rowselect)="expandAll5($event)" #angularGrid5 [data]="childMessage?.schema?.requestValidation" [configs]="configs5"></db-angular-tree-grid>
+        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.requestValidation" [configs]="validationConfig"></db-angular-tree-grid>
     </div>
     <!--Response payload-->
     <br> 
@@ -121,14 +120,12 @@
             <div class="tab-pane fade show active" id="pills-example-response" role="tabpanel" aria-labelledby="pills-example-response-tab">
 
                     <div class="is-helpful3">
-                        <!-- <pre class="is-help">{{ responsePayload | json }}</pre> -->
                         <ngx-json-viewer [json]="childMessage?.schema?.responsePayload?.success"></ngx-json-viewer>
                     </div>
 
             </div>
             <div class="tab-pane fade" id="pills-schema-response" role="tabpanel" aria-labelledby="pills-schema-response-tab">                
                 <div class="is-helpful3" >
-                    <!-- <pre class="is-help">{{ responsePayload | json }}</pre> -->
                     <ngx-json-viewer [json]="childMessage?.schema?.responsePayloadExample"></ngx-json-viewer>
                 </div>                 
             </div>       
@@ -139,13 +136,13 @@
     
     <!-- success Payload Details -->
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.successDetails)">
-        <h2 style="font-weight: bold;">success Payload Details </h2>
-        <db-angular-tree-grid  (rowselect)="expandAll3($event)" #angularGrid3 [data]="childMessage?.schema?.responsePayload?.successDetails" [configs]="configs3"></db-angular-tree-grid>
+        <h2 style="font-weight: bold;">Success Payload Details </h2>
+        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.responsePayload?.successDetails" [configs]="responseConfig"></db-angular-tree-grid>
     </div>
 
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.failureDetails)">
         <h2 style="font-weight: bold;">Failure Payload Details </h2>
-        <db-angular-tree-grid  (rowselect)="expandAll4($event)" #angularGrid4 [data]="childMessage?.schema?.responsePayload?.failureDetails" [configs]="configs3"></db-angular-tree-grid>
+        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.responsePayload?.failureDetails" [configs]="responseConfig"></db-angular-tree-grid>
     </div>
 
     <footer style=" color: red; height: 150px;">
