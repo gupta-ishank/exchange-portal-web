@@ -1,48 +1,39 @@
-
-<div class="container-fluid ps-md-0">
-<div class="row g-0">
-    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-    <div class="col-md-8 col-lg-6">
-    <div class="login d-flex align-items-center py-5">
-        <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
-
-
-            <!-- Sign In Form -->
-            <form>
-                <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+<div class="container-fluid">
+    <div class="card card0 border-0">
+        <div class="row d-flex">
+            <div class="col-lg-6">
+                <div class="card1 pb-5">
+                    <div class="row"> <img src="../../assets/netmeds2.png" class="logo" style="height: fit-content;">
+                    </div>
+                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img
+                            src="https://i.imgur.com/uNGdWHi.png" class="image"> </div>
                 </div>
-                <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-                </div>
+            </div>
+            <div class="col-lg-6" style="position: relative;">
+                <h1 class="mb-1 text-sm" style="font-size: 25px !important; font-weight: 600; color: #3fb8bb; margin-left: 20px;">Login</h1>
+                <p style="position: absolute; top: 40px; z-index: 100; left: 40px; color: red;">{{statusMessage}}</p>
+                <div class="card2 card border-0 px-4 py-5">
 
-                <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label" for="rememberPasswordCheck">
-                    Remember password
-                </label>
-                </div>
+                    <form >
+                        <div class="row px-3"> <label class="mb-1">
+                                <h6 class="mb-0 text-sm">User Name</h6>
+                            </label> <input class="mb-4" type="text" name="email" placeholder="Enter a Username" [(ngModel)] = "user.userName"> </div>
+                        <div class="row px-3"> <label class="mb-1">
+                                <h6 class="mb-0 text-sm">Password</h6>
+                            </label> <input type="password" name="password" placeholder="Enter password" [(ngModel)] = "user.password"> </div>
 
-                <div class="d-grid">
-                <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
-                <div class="text-center">
-                    <a class="small" href="#">Forgot password?</a>
+                        <div class="row mb-3 px-3"> <button type="submit"
+                                class="btn btn-blue text-center" (click) = "handleLogin()">Login</button> </div>
+                    </form>
+                    <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a
+                                class="text-danger ">Register</a></small> </div>
                 </div>
-                </div>
-
-            </form>
             </div>
         </div>
-        </div>
-    </div>
+        <!-- <div class="bg-blue py-4">
+            <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2021. All rights reserved.</small>
+                <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
+            </div>
+        </div> -->
     </div>
 </div>
-</div>
-
-
-
-  

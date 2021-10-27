@@ -90,6 +90,8 @@ body{
 }  
 .mat-tree-node span mat-icon{
   margin-top: -1px;
+  color: #32aeb1;
+  margin-right: 3px;
 } 
 
 /* .api-content:hover{
