@@ -24,16 +24,12 @@ export class SignupComponent implements OnInit {
   statusMessage: any= "";
   handleSignUp(){
     if(this.newUser.password != this.newUser.confirmPassword){
-      console.log("false");
       this.statusMessage = "Password doesn't match";
     }else{
       this.service.signUpUser(this.newUser).subscribe(data => {
-        // this.status = data;
-        console.log(data);
         if(data){
           this.route.navigate(['/login']);
         }else{
-          console.log("User already exists");
           this.statusMessage = "User already exists !";
         }
       })

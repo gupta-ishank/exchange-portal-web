@@ -5,9 +5,9 @@
 
 <div style="margin-left: 50px; " *ngIf="childMessage != null">
     <div class="method-title" style="margin-top: 50px">
-        <h1>{{methodTitle}}</h1>
+        <h1>{{childMessage?.description}}</h1>
         <hr style="margin-right: 35px;">
-        <h3> {{methodDescription}}</h3>
+        <h3> {{childMessage?.subDescription}}</h3>
     </div>
     <br>
         
@@ -80,14 +80,12 @@
             <div class="tab-pane fade show active" id="pills-example-request" role="tabpanel" aria-labelledby="pills-example-request-tab">
 
                     <div class="is-helpful3">
-                        <!-- <pre class="is-help">{{ requestPayload | json }}</pre> -->
-                        <ngx-json-viewer [json]="requestPayload"></ngx-json-viewer>
+                        <ngx-json-viewer [json]="childMessage?.schema?.requestPayload"></ngx-json-viewer>
                     </div>
 
             </div>
             <div class="tab-pane fade" id="pills-schema-request" role="tabpanel" aria-labelledby="pills-schema-request-tab">              
                 <div class="is-helpful3" >
-                    <!-- <pre class="is-help">{{ requestPayload | json }}</pre> -->
                     <ngx-json-viewer [json]="childMessage?.schema?.requestPayloadExample"></ngx-json-viewer>
                 </div>         
             </div>      
@@ -98,14 +96,14 @@
     
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayloadDetails)">
         <h2 style="font-weight: bold;">Request Payload Details </h2>
-        <db-angular-tree-grid  #angularGrid2 [data]="data2" [configs]="configs2" ></db-angular-tree-grid>
+        <db-angular-tree-grid  #angularGrid2 [data]="childMessage?.schema?.requestPayloadDetails" [configs]="configs2" ></db-angular-tree-grid>
     </div> 
     
 
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.requestValidation)">
         <h2 style="font-weight: bold;">Request Validations</h2>
-        <db-angular-tree-grid  (rowselect)="expandAll5($event)" #angularGrid5 [data]="data5" [configs]="configs5"></db-angular-tree-grid>
+        <db-angular-tree-grid  (rowselect)="expandAll5($event)" #angularGrid5 [data]="childMessage?.schema?.requestValidation" [configs]="configs5"></db-angular-tree-grid>
     </div>
     <!--Response payload-->
     <br> 
@@ -124,7 +122,7 @@
 
                     <div class="is-helpful3">
                         <!-- <pre class="is-help">{{ responsePayload | json }}</pre> -->
-                        <ngx-json-viewer [json]="responsePayload?.success"></ngx-json-viewer>
+                        <ngx-json-viewer [json]="childMessage?.schema?.responsePayload?.success"></ngx-json-viewer>
                     </div>
 
             </div>
@@ -142,12 +140,12 @@
     <!-- success Payload Details -->
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.successDetails)">
         <h2 style="font-weight: bold;">success Payload Details </h2>
-        <db-angular-tree-grid  (rowselect)="expandAll3($event)" #angularGrid3 [data]="data3" [configs]="configs3"></db-angular-tree-grid>
+        <db-angular-tree-grid  (rowselect)="expandAll3($event)" #angularGrid3 [data]="childMessage?.schema?.responsePayload?.successDetails" [configs]="configs3"></db-angular-tree-grid>
     </div>
 
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.failureDetails)">
         <h2 style="font-weight: bold;">Failure Payload Details </h2>
-        <db-angular-tree-grid  (rowselect)="expandAll4($event)" #angularGrid4 [data]="data4" [configs]="configs3"></db-angular-tree-grid>
+        <db-angular-tree-grid  (rowselect)="expandAll4($event)" #angularGrid4 [data]="childMessage?.schema?.responsePayload?.failureDetails" [configs]="configs3"></db-angular-tree-grid>
     </div>
 
     <footer style=" color: red; height: 150px;">

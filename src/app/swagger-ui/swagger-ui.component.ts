@@ -57,7 +57,6 @@ export class SwaggerUiComponent implements OnInit{
       this.editor.specActions.updateSpec(specDetails)
     }else{
       this.appService.getContentOfFile(node).subscribe(data =>{
-        console.log(data)
         this.fileContent = data;
         let specDetails = "";
         if(data != null) specDetails = this.fileContent["content"]
@@ -79,8 +78,6 @@ export class SwaggerUiComponent implements OnInit{
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
       let user = localStorage.getItem("user");
-      
-      console.log("User = " + user)
       if(localStorage.length == 0){
         this.route.navigate(['/login']);
       }else{
@@ -92,7 +89,6 @@ export class SwaggerUiComponent implements OnInit{
 
   renderData : any;
   handleRenderData(node : any){
-    console.log(node);
     this.renderData = node;
     this.customReference?.renderMethodData(node);
   }

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   statusMessage: any= "";
   handleLogin(){
 
-    if(this.user.userName === 'admin' && this.user.password === 'netmeds'){
+    if(this.user.userName === 'rwadmin' && this.user.password === 'netmeds'){
       localStorage.setItem("user", JSON.stringify(this.user));
       this.route.navigate(['/swagger']);
     }
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("user", JSON.stringify(this.status[0]));
           this.route.navigate(['/swagger']);
         }else{
-          console.log("Invalid credentials");
           this.statusMessage = "Invalid credentials!";
         }
       })

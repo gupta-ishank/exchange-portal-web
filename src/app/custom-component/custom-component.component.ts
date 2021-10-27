@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Injectable, Input, OnInit, ViewChild } from '@angular/core';
+import {Component, Injectable, OnInit, ViewChild } from '@angular/core';
 
 import { AngularTreeGridComponent } from 'angular-tree-grid';
 
@@ -12,7 +12,6 @@ import { AngularTreeGridComponent } from 'angular-tree-grid';
   styleUrls: ['./custom-component.component.css']
 })
 export class CustomComponentComponent implements OnInit{
-  // @Input() childMessage: any ;
 
   childMessage: any;
   content: any= [];
@@ -114,13 +113,9 @@ export class CustomComponentComponent implements OnInit{
   }
 
   expandAll2($event :any) {
-    console.log($event?.data?.Level)
     let id = $event?.data?.Level;
-    console.log("here");
     if(this.angularGrid2){
-      console.log(id);
       this.angularGrid2?.expandAll();
-      console.log("here3");
     }
   }
 
@@ -159,13 +154,9 @@ export class CustomComponentComponent implements OnInit{
 
   // success Payload Details
   expandAll3($event :any) {
-    console.log($event?.data?.Level)
     let id = $event?.data?.Level;
-    console.log("here");
     if(this.angularGrid3){
-      console.log(id);
       this.angularGrid3?.expandRow(id);
-      console.log("here3");
     }
   }
 
@@ -216,11 +207,8 @@ export class CustomComponentComponent implements OnInit{
   }
 
   expandAll4($event :any) {
-    console.log($event?.data?.Level)
     let id = $event?.data?.Level;
-    console.log("here");
     if(this.angularGrid4){
-      console.log(id);
       this.angularGrid4?.expandRow(id);
     }
   }
@@ -240,7 +228,7 @@ export class CustomComponentComponent implements OnInit{
       {
         name: 'parameter',
         header: 'Parameter',
-        width: '100px'
+        width: '200px'
       },
       {
         name: 'enum',
@@ -272,13 +260,9 @@ export class CustomComponentComponent implements OnInit{
 
   // Validation
   expandAll5($event :any) {
-    console.log($event?.data?.Level)
     let id = $event?.data?.Level;
-    console.log("here");
     if(this.angularGrid3){
-      console.log(id);
       this.angularGrid3?.expandRow(id);
-      console.log("here3");
     }
   }
 
@@ -287,32 +271,11 @@ export class CustomComponentComponent implements OnInit{
   }
 
   renderMethodData(methodData:any){
-    console.log(methodData);
     this.childMessage = methodData; 
     this.tip = "It is recommended to check out Notes for the reader. You might find this helpful as it contains Guidelines for using API references and Terminologies used here.";
-    // this.methodDescription = this.childMessage;
-    // this.endpoint = this.childMessage?.path;
-    // this.requestType = this.childMessage?.name;
-    this.requestPayloadArray = this.childMessage?.schema?.requestPayloadDetails;
-    this.successPayloadArray = this.childMessage?.schema?.responsePayload?.sucessDetails;
-    this.failurePayloadArray = this.childMessage?.schema?.responsePayload?.failureDetails;
-
-    // this.validationPayloadArray = this.childMessage?.schema?.validationPayloadArray;
-    // this.failurePayloadArray = this.childMessage?.schema?.validationPayload?.failureDetails;
-
-    this.methodTitle = methodData?.description;
-    this.methodDescription = methodData?.subDescription;
-    this.requestPayload = methodData?.schema?.requestPayload;
-    this.responsePayload = methodData?.schema?.responsePayload;
-    // this.validationPayload = methodData?.schema?.validationPayload;
-    
     this.data[0].details = methodData?.path;
     this.data[1].details = methodData?.name;
     this.data[4].details = methodData?.schema?.security == [] ? "" : Object.keys(methodData?.schema?.security[0]);
-    this.data2 = methodData?.schema?.requestPayloadDetails;
-    this.data3 = methodData?.schema?.responsePayload?.successDetails;
-    this.data4 = methodData?.schema?.responsePayload?.failureDetails;
-    this.data5 = methodData?.schema?.requestValidation;
   }
 
 

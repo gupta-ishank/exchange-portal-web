@@ -57,7 +57,7 @@ body{
 } 
 
 #swagger-ui{
-  height: 87vh;
+  height: 100vh;
 }  
 
 .example-tree-invisible {
@@ -136,7 +136,7 @@ body{
 }
 
 .example-container{
-  height: 90vh;
+  height: 93vh;
 }
 ::ng-deep .mat-drawer-inner-container {
   height: unset !important;
