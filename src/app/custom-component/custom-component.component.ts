@@ -1,5 +1,4 @@
-import {Component, Injectable, OnInit, ViewChild } from '@angular/core';
-import { AngularTreeGridComponent } from 'angular-tree-grid';
+import {Component } from '@angular/core';
 import { basicTableConfig, parameterTableConfig, requestTableConfig, responseTableConfig, validationTableConfig } from './custom-component.table.configs';
 
 @Component({
@@ -21,7 +20,7 @@ export class CustomComponentComponent{
     { id: 4, name: 'Header (Content-Type):', details: "application/json", parent: 0},
     { id: 5, name: 'Header (Authorization):', details: "", parent: 0}
   ];
- 
+  
   basicConfig: any = basicTableConfig
   requestConfig: any = requestTableConfig;
   responseConfig: any = responseTableConfig;

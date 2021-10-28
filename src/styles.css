@@ -7,3 +7,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 tr th div {
     background-color: rgba(25,118,210,.2) !important;
 }
+
+pre {
+    font-weight: bold;
+    font-size: larger;
+    background: rgba(25,118,210,.05);
+    padding: 10px;
+    border-radius: .5em;
+}
+pre .number-line {
+    color: #adadaf;
+}
+pre .string {
+    color: #6c8f02;
+}
+pre .number {
+    color: #dca313;
+}
+pre .boolean {
+    color: #0078bd;
+}
+pre .null {
+    color: #686f83;
+}
+pre .key {
+    color: black;
+}

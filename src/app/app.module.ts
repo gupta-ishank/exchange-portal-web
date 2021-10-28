@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { CustomComponentComponent } from './custom-component/custom-component.component';
 import {AngularTreeGridModule} from 'angular-tree-grid';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { PrettyjsonPipe } from './prettyjson.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     LoginComponent,
     SignupComponent,
     CustomComponentComponent,
+    PrettyjsonPipe,
   ],
   imports: [
     BrowserModule,

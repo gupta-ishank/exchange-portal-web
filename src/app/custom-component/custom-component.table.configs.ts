@@ -72,19 +72,14 @@ export const validationTableConfig = {
         width: '200px'
       },
       {
-        name: 'enum',
-        header: 'Enum',
-        width: '200px'
-      },
-      {
         name: 'maxLength',
-        header: 'maxLength',
-        width: '60px'
+        header: 'Max Length',
+        width: '120px'
       },
       {
         name: 'minLength',
-        header: 'minLength',
-        width: '60px'
+        header: 'Min Length',
+        width: '120px'
       },
       {
         name: 'pattern',
