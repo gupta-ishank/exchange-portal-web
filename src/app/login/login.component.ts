@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppService } from '../app.service';
+import { LoginService } from './login.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,12 @@ export class LoginComponent implements OnInit {
     userName: "",
     password: ""
   }
-  constructor(private route: Router, private service: AppService) {
-    if(localStorage.getItem("user") != null){
-      this.route.navigate(['/swagger']);
-    }
+  constructor(private route: Router, private service: LoginService) {
+
+    /* this.service.checkLogin().subscribe( res =>{
+      let checkResponse: any = res;
+      if(checkResponse.loggedIn) this.route.navigate(['/swagger']);
+    }) */
    }
 
   ngOnInit(): void {
@@ -25,22 +28,29 @@ export class LoginComponent implements OnInit {
   status: any;
   statusMessage: any= "";
   handleLogin(){
-
-    if(this.user.userName === 'rwadmin' && this.user.password === 'netmeds'){
-      localStorage.setItem("user", JSON.stringify(this.user));
-      this.route.navigate(['/swagger']);
-    }
-    else{
-      this.service.loginUser(this.user).subscribe(data =>{
-        this.status = data;
-        if(data != null && this.status.length != 0){
-          localStorage.setItem("user", JSON.stringify(this.status[0]));
-          this.route.navigate(['/swagger']);
-        }else{
-          this.statusMessage = "Invalid credentials!";
+    this.route.navigate(['/swagger']);
+    /* this.service.doLogin(this.user.userName, this.user.password).subscribe(
+      res => {
+        let loginResponse:any = res;
+        if(loginResponse['returnCode'] == 1000){
+          localStorage.setItem("name", this.user.userName);
+          console.log(this.decryptResponseAndReturnJson(loginResponse['returnData']))
         }
-      })
-    }
+        this.statusMessage = loginResponse['returnText'];
+      }
+    ) */
   }
-
+  encryptedBase64Key = 'UVdFUlRZQVNERkdIWlhDVg==';
+  decryptResponseAndReturnJson(responseStr:string){
+    let start = new Date();
+    let parsedBase64Key = CryptoJS.enc.Base64.parse(this.encryptedBase64Key);
+    let decryptedData = CryptoJS.AES.decrypt( responseStr, parsedBase64Key, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+        } );
+    let decryptedText = decryptedData.toString( CryptoJS.enc.Utf8 );
+    console.log("Time Taken for decrypt : " + (new Date().getTime() - start.getTime()));
+    return JSON.parse(decryptedText);
 }
+}
+

@@ -21,7 +21,7 @@
     <br>
     <div *ngIf="childMessage">
         <h2 style="font-weight: bold;">Basic Information</h2>
-        <db-angular-tree-grid #angularGrid [data]="basicTableData" [configs]="basicConfig"></db-angular-tree-grid>
+        <db-angular-tree-grid [data]="basicTableData" [configs]="basicConfig"></db-angular-tree-grid>
     </div>
 
     <br> 
@@ -49,12 +49,12 @@
     <br>
     <div *ngIf="emptyCheck(childMessage?.schema?.parameterPayloadDetails)">
         <h2 style="font-weight: bold;">Parameter Payload Details</h2>
-        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.parameterPayloadDetails" [configs]="parameterConfig"></db-angular-tree-grid>
+        <db-angular-tree-grid   [data]="childMessage?.schema?.parameterPayloadDetails" [configs]="parameterConfig"></db-angular-tree-grid>
     </div>
     <br>
-    <div *ngIf="emptyCheck(childMessage?.schema?.parameterValidation)">
+    <div *ngIf="emptyCheck(childMessage?.schema?.parameterPayloadDetails)">
         <h2 style="font-weight: bold;">Parameter Validations</h2>
-        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.parameterValidation" [configs]="validationConfig"></db-angular-tree-grid>
+        <db-angular-tree-grid   [data]="childMessage?.schema?.parameterPayloadDetails" [configs]="validationConfig"></db-angular-tree-grid>
     </div>
     
     <br> 
@@ -85,14 +85,14 @@
     
     <div *ngIf="emptyCheck(childMessage?.schema?.requestPayloadDetails)">
         <h2 style="font-weight: bold;">Request Payload Details </h2>
-        <db-angular-tree-grid  #angularGrid [data]="childMessage?.schema?.requestPayloadDetails" [configs]="requestConfig" ></db-angular-tree-grid>
+        <db-angular-tree-grid  [data]="childMessage?.schema?.requestPayloadDetails" [configs]="requestConfig" ></db-angular-tree-grid>
     </div> 
     
 
     <br>
-    <div *ngIf="emptyCheck(childMessage?.schema?.requestValidation)">
+    <div *ngIf="emptyCheck(childMessage?.schema?.requestPayloadDetails)">
         <h2 style="font-weight: bold;">Request Validations</h2>
-        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.requestValidation" [configs]="validationConfig"></db-angular-tree-grid>
+        <db-angular-tree-grid   [data]="childMessage?.schema?.requestPayloadDetails" [configs]="validationConfig"></db-angular-tree-grid>
     </div>
     <!--Response payload-->
     <br> 
@@ -123,12 +123,12 @@
     <!-- success Payload Details -->
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.successDetails)">
         <h2 style="font-weight: bold;">Success Payload Details </h2>
-        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.responsePayload?.successDetails" [configs]="responseConfig"></db-angular-tree-grid>
+        <db-angular-tree-grid   [data]="childMessage?.schema?.responsePayload?.successDetails" [configs]="responseConfig"></db-angular-tree-grid>
     </div>
 
     <div *ngIf="emptyCheck(childMessage?.schema?.responsePayload?.failureDetails)">
         <h2 style="font-weight: bold;">Failure Payload Details </h2>
-        <db-angular-tree-grid   #angularGrid [data]="childMessage?.schema?.responsePayload?.failureDetails" [configs]="responseConfig"></db-angular-tree-grid>
+        <db-angular-tree-grid   [data]="childMessage?.schema?.responsePayload?.failureDetails" [configs]="responseConfig"></db-angular-tree-grid>
     </div>
 
     <footer style=" color: red; height: 150px;">

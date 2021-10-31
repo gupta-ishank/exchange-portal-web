@@ -5,6 +5,7 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { CustomComponentComponent } from '../custom-component/custom-component.component'
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 declare const SwaggerUIBundle: any;
 
 
@@ -39,6 +40,7 @@ export class SwaggerUiComponent implements OnInit{
 
   editor : any
   constructor(private appService: AppService, 
+    private loginService: LoginService,
     private route: Router) {
     this.refreshMenu();
   }
@@ -51,39 +53,20 @@ export class SwaggerUiComponent implements OnInit{
 
 
   fileContent:any = []
-  async loadEditorSpec(node: any){
-    if(node === null){
-      let specDetails = "";
-      this.editor.specActions.updateSpec(specDetails)
-    }else{
-      this.appService.getContentOfFile(node).subscribe(data =>{
-        this.fileContent = data;
-        let specDetails = "";
-        if(data != null) specDetails = this.fileContent["content"]
-        this.editor.specActions.updateSpec(specDetails)
-      })
-    }
-  }
 
-  async onClick(node: any){
-    // if(this.treeControl.isExpanded(node)) this.treeControl.expansionModel; 
-    if(node.type != 1){
-      await this.loadEditorSpec(node)
-    }
-    event?.stopPropagation()
-  }
 
   refreshMenu() {
     this.appService.getAllMenu().subscribe(async data => {
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
-      let user = localStorage.getItem("user");
-      if(localStorage.length == 0){
-        this.route.navigate(['/login']);
-      }else{
-
-        this.currentUser = JSON.parse(user == null ? " ": user);
-      }
+      let user = localStorage.getItem("name");
+      /* this.loginService.checkLogin().subscribe( res =>{
+        let checkRes : any = res;
+        if(!checkRes.loggedIn){
+          this.route.navigate(['/login']);
+        }
+      }) */
+      this.currentUser = user == null ? " ": user;
     })
   }
 
@@ -94,7 +77,11 @@ export class SwaggerUiComponent implements OnInit{
   }
 
   handleLogout(){
-    localStorage.removeItem("user");
-    this.route.navigate(['/login']);
+    localStorage.removeItem("name");
+    this.loginService.doLogout().subscribe( res =>{
+      if(res){
+        this.route.navigate(['/login']);
+      }
+    })
   }
 }
