@@ -140,5 +140,10 @@ export const responseTableConfig = {
         header: 'Type',
         width: '200px'
       },
+      {
+        name: 'Mendate',
+        header: 'Nullable',
+        width: '200px'
+      }
     ]
 }
