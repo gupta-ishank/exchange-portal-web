@@ -16,7 +16,6 @@ export class LoginService {
   user = {
     'userName': 'Guest',
     'password': 'Guest',
-    'preferredBu' : '715'
   }
 
   doLogin(userName: string, password: string) {

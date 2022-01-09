@@ -28,7 +28,11 @@ export class LoginComponent implements OnInit {
   status: any;
   statusMessage: any= "";
   handleLogin(){
-    this.route.navigate(['/swagger']);
+    if(this.user.userName == "rwadmin" && this.user.password == "netmeds"){
+      this.service.user = this.user;
+      this.route.navigate(['/swagger']);
+    }
+    this.statusMessage = "Invalid Username or Password"
     /* this.service.doLogin(this.user.userName, this.user.password).subscribe(
       res => {
         let loginResponse:any = res;
@@ -40,17 +44,5 @@ export class LoginComponent implements OnInit {
       }
     ) */
   }
-  encryptedBase64Key = 'UVdFUlRZQVNERkdIWlhDVg==';
-  decryptResponseAndReturnJson(responseStr:string){
-    let start = new Date();
-    let parsedBase64Key = CryptoJS.enc.Base64.parse(this.encryptedBase64Key);
-    let decryptedData = CryptoJS.AES.decrypt( responseStr, parsedBase64Key, {
-        mode: CryptoJS.mode.ECB,
-        padding: CryptoJS.pad.Pkcs7
-        } );
-    let decryptedText = decryptedData.toString( CryptoJS.enc.Utf8 );
-    console.log("Time Taken for decrypt : " + (new Date().getTime() - start.getTime()));
-    return JSON.parse(decryptedText);
-}
 }
 

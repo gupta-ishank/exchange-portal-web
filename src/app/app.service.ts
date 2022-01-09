@@ -9,8 +9,7 @@ import { BASE_PATH } from './variables';
 export class AppService {
 
     currentUser: any
-    basePath = 'http://localhost:8080';
-
+    basePath = 'http://localhost:8888/apiexchange';
     constructor(private http: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string) {
         if(basePath){
           this.basePath = basePath;

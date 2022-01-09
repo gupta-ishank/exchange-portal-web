@@ -8,7 +8,7 @@
   
     </div>
     <div class="user-ui">
-      <p>{{currentUser}}</p>
+      <p>{{loginService.user.userName}}</p>
       <span class="material-icons">
         account_circle</span>
         <p (click)="handleLogout()">logout</p>
@@ -99,9 +99,11 @@
     <mat-drawer-content>
         <!-- <div id="swagger-ui"> </div> -->
         <!-- <div *ngIf="childMessage == null" style="color: red; height: 100vh;"></div> -->
-        <div >
-          <app-custom-component #customReference ></app-custom-component>
+        <div *ngIf="showLoading" style="position: absolute;top: 40%;left: 40%;">
+          <i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size: 100px;"></i>
+          <span class="sr-only">Loading...</span>
         </div>
+        <app-custom-component #customReference *ngIf="!showLoading"></app-custom-component>
     </mat-drawer-content>
   
   </mat-drawer-container>

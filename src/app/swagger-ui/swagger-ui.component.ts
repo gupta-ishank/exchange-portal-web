@@ -25,8 +25,7 @@ export class SwaggerUiComponent implements OnInit{
 
   
   title = 'Netmeds Documentations';
-
-  currentUser : any;
+  showLoading = true;
 
   @ViewChild(CustomComponentComponent) customReference : CustomComponentComponent | undefined;
 
@@ -40,13 +39,12 @@ export class SwaggerUiComponent implements OnInit{
 
   editor : any
   constructor(private appService: AppService, 
-    private loginService: LoginService,
+    public loginService: LoginService,
     private route: Router) {
-    this.refreshMenu();
   }
 
   ngOnInit(): void {
-    
+    this.refreshMenu();
   }
   
   hasChild = (_: number, node: MenuNode) => !!node.childs && node.childs.length > 0; // !! = ?
@@ -56,17 +54,10 @@ export class SwaggerUiComponent implements OnInit{
 
 
   refreshMenu() {
-    this.appService.getAllMenu().subscribe(async data => {
+    this.appService.getAllMenu().subscribe(data => {
+      this.showLoading = false;
       this.mainMenuData = data
       this.dataSource.data = this.mainMenuData;
-      let user = localStorage.getItem("name");
-      /* this.loginService.checkLogin().subscribe( res =>{
-        let checkRes : any = res;
-        if(!checkRes.loggedIn){
-          this.route.navigate(['/login']);
-        }
-      }) */
-      this.currentUser = user == null ? " ": user;
     })
   }
 
@@ -77,11 +68,6 @@ export class SwaggerUiComponent implements OnInit{
   }
 
   handleLogout(){
-    localStorage.removeItem("name");
-    this.loginService.doLogout().subscribe( res =>{
-      if(res){
-        this.route.navigate(['/login']);
-      }
-    })
+    this.route.navigate(['/login']);
   }
 }
